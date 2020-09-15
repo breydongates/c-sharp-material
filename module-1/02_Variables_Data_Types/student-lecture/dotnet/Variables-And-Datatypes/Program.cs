@@ -1,11 +1,15 @@
 ﻿using System;
 
-namespace Variables_And_Datatypes
+namespace VariablesAndDatatypes
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            Console.WriteLine("Hello .NET!");
+
+            Console.WriteLine();
+
             /* VARIABLES & DATA TYPES */
 
             /*
@@ -110,6 +114,25 @@ namespace Variables_And_Datatypes
             19. What is 5.4 divided by 2?
             */
 
+            /* Double math can be fun in .NET
+            float a = 1.03f;
+            float b = 0.42f;
+            double c = a - b;
+            Console.WriteLine("1.03 - 0.42 with mixed float and double = " + c);
+            double g = 1.03;
+            double h = 0.42;
+            double i = g - h;
+            Console.WriteLine("1.03 - 0.42 with all double = " + i);
+            float j = 1.03f;
+            float k = 0.42f;
+            float l = j - k;
+            Console.WriteLine("1.03 - 0.42 with all float = " + l);
+            decimal m = 1.03M;
+            decimal n = 0.42M;
+            decimal o = m - n;
+            Console.WriteLine("1.03 - 0.42 with all decimal = " + o);
+            */
+
             /* CASTING */
 
             /*
@@ -142,8 +165,8 @@ namespace Variables_And_Datatypes
             26. Now set doneWithExercise to true.
             */
 
-
-            Console.ReadLine();
+            // The program will stop here and wait for the user to press enter.
+            Console.ReadLine(); 
         }
     }
 }
