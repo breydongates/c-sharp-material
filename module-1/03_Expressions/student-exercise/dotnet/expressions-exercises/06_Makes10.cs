@@ -16,6 +16,11 @@ namespace Exercises
         */
         public bool Makes10(int a, int b)
         {
+            int sum = a + b;
+            if (sum == 10 || a == 10 || b == 10)
+            {
+                return true;
+            }
             return false;
         }
 

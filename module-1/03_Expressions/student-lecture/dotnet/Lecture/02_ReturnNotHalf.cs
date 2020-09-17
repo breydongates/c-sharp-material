@@ -15,7 +15,13 @@ namespace Lecture
         */
         public double ReturnNotHalf()
         {
-            return 0.5;
+            return 500.1;
+        }
+
+        public void FormatGregsComputer()
+        { //TODO: Format Greg's Computer 
+        }
+
+
         }
     }
-}

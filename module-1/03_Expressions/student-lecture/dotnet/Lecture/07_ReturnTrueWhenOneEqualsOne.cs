@@ -15,10 +15,12 @@ namespace Lecture
             TOPIC: Boolean Expression & Conditional Logic
         */
         public bool ReturnTrueWhenOneEqualsOne()
+
         {
-            if (1 == 1)
+            int number = 1;
+            if (number == 1)
             {
-                return false;
+                return true; //the method stops executing here and returns true 
             }
 
             return false;

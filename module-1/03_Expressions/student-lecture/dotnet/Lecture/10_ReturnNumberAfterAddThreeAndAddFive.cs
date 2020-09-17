@@ -15,9 +15,18 @@ namespace Lecture
             We'll then return the result
             TOPIC: Stacking Conditional Logic
         */
-        public int ReturnNumberAfterAddThreeAndAddFive(int number, bool addThree, bool addFive)
+        public int ReturnNumberAfterAddThreeAndAddFive(
+            int number,
+            bool addThree,
+            bool addFive)
         {
-             return number;
-        }
+            if (addThree) //can also use (addThree == true)
+            {  number += 3;
+            }
+            if (addFive == true)
+            { number += 5;
+            }
+            return number;
+            }
     }
 }

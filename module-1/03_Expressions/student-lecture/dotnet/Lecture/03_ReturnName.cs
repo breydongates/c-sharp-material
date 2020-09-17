@@ -15,7 +15,7 @@ namespace Lecture
         */
         public string ReturnName()
         {
-            return null;
+            return "Null means nothing is present";
         }
 
     }
