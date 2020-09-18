@@ -21,13 +21,11 @@ namespace Exercises
             {
                 return true;
             }
-            if ((n <= 1 && n >= 10) && (outsideMode))
+           
+            else
+                if ((n <= 1 || n >= 10) && (outsideMode))
             {
                 return true;
-            }
-            if ((n >= 1 && n <= 10) && (outsideMode))
-            {
-                return false;
             }
             if ((n <= 1 && n >= 10) && (!outsideMode))
             {
@@ -35,6 +33,7 @@ namespace Exercises
             }
             return false;
         }
+        
 
     }
 }

@@ -16,9 +16,18 @@ namespace Lecture
         public int ReturnSumArray()
         {
             int[] arrayToLoopThrough = { 3, 4, 2, 9 };
+            int sum = 0;
+           
+            for (int index = 0; index <= arrayToLoopThrough.Length ; index++ )
+                //     ^ starts loop at beginning  ^is this the end of array? ^ go on to next, increase by 1 until end
+            {
+              sum += arrayToLoopThrough[index];
+                // will grab 3, then add to sum. will grab 4, then add to sum, etc.
+                // could also use sum += arrayToLoopThrough[index];
 
+            }
 
-            return 0;
+            return sum; // sum of 3+4+2+9
         }
     }
 }

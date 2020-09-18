@@ -17,17 +17,30 @@ namespace Exercises
       */
         public int Max1020(int a, int b)
         {
-            if(a > b)
-            { return a; }
-            else if (b>a)
-            { return b; }
-            if (a >=10 && a <=20)
-            { return a; }
-            if (b >= 10 && b <= 20)
-            { return b; }
+            bool isA_BetweenRange = (a >= 10 && a <= 20);
+            bool isB_BetweenRange = (b >= 10 && b <= 20);
+            int betweenTenAndTwenty = 0;
+            if (a >= 0 && b >= 0)
+            { }
+                if (isA_BetweenRange && isB_BetweenRange)
+                {
+                     
+                    if (a >= b )
+                    {
+                        return betweenTenAndTwenty ;
+                    }
+                    else if (!isB_BetweenRange && isA_BetweenRange  )
+                    { betweenTenAndTwenty = a; }
+                    else if (isB_BetweenRange && !isA_BetweenRange )
+                    {
+                        betweenTenAndTwenty = b ;
+                    }
 
-                return 0;
+
+                }
+
+                return betweenTenAndTwenty ;
+            }
         }
-
     }
-}
+

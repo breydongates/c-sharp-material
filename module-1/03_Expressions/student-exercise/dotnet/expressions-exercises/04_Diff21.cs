@@ -17,13 +17,11 @@ namespace Exercises
          */
         public int Diff21(int n)
         {
-            int diff = 21 - n;
-            if (n > 21)
-            {
-                diff = (diff) * 2;
-            }
-
-            return diff;
+           if (n <=21 )
+            { return 21 - n; }
+           else if (n > 21)
+            { return (n-21) * 2; }
+            return 0;
         }
     }
 }
