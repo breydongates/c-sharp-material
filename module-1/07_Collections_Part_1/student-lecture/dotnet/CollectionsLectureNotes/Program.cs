@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CollectionsLectureNotes
 {
@@ -19,6 +18,7 @@ namespace CollectionsLectureNotes
 
             /////////////////
 
+            // Discuss namespaces & using statements
 
             //////////////////
             // OBJECT EQUALITY
