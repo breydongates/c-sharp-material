@@ -116,6 +116,25 @@ namespace StringsDemo
                 Console.WriteLine("All done!");
             }
 
+            string someString = "Hello Tuesday";
+            // char letter = someString[0];
+
+            string modifiedString = someString.Remove(5, 3);
+
+            someString = "Happy Happy Joy Joy";
+            someString = someString.Replace("Happy", "Tuna");
+
+            string output = "";
+
+            for (int i = 0; i < someString.Length; i++)
+            {
+                char letter = someString[i];
+                if (letter != 'a')
+                {
+                    output += letter;
+                }
+            }
+
             Console.ReadLine();
         }
     }
