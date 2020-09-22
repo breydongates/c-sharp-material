@@ -10,7 +10,12 @@ namespace DiscountCalculator
             {
                 if (i % 2 == 0)
                 {
-                    continue;
+                    continue; //continue, this will display odd instead of even numbers 
+                }
+
+                if (i % 5 ==0)
+                {
+                    break; // leave the for loop
                 }
                 Console.WriteLine(i);
 

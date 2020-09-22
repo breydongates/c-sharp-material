@@ -16,7 +16,8 @@ namespace Exercises
          MiddleThree("solving") → "lvi"
          */
         public string MiddleThree(string str)
-        {
+        { 
+            
             return null;
         }
     }

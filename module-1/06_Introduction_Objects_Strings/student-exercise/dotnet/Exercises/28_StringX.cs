@@ -17,7 +17,13 @@ namespace Exercises
         */
         public string StringX(string str)
         {
-            return null;
+            string removeX = "";
+            for (int i = 1; i < str.Length - 1; i++)
+                str.Substring(str.Length - 1, 1);
+            str = str.Replace("x", "");
+            
+                return removeX;
+            
         }
     }
 }
