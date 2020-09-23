@@ -16,6 +16,12 @@ namespace Exercises
          */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
+
+            
+            
+            
+            
+            
             return null;
         }
 

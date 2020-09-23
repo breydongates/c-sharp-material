@@ -16,6 +16,14 @@ namespace Exercises
          */
         public int CountXX(string str)
         {
+            /* int count = 0;
+            string xxCounter = str;
+            for (int i = 0; i < str.Length; i++)
+           
+            if (xxCounter [i] == 'xx')
+            {
+                return count++;
+            } */
             return 0;
         }
     }

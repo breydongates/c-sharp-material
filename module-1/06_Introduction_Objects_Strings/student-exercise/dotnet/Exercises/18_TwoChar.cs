@@ -17,11 +17,15 @@ namespace Exercises
          TwoChar("java", 3) → "ja"
          */
         public string TwoChar(string str, int index)
-        { /* if (index < 0 || index + 2 > str.Length )
+        {
+            if (index < 2 || index +2 > str.Length )
+            
+                { return str.Substring(0, 2); }
+            if (index + 2 > str.Length)
+            { return str.Substring(0, 2); }
 
-            return str.Substring(0,2); 
-            return str.Substring(index, index + 2); */
-            return null;
+            return str.Substring(index, 2); // I dont understand why this is not working. 
+
         }
     }
 }

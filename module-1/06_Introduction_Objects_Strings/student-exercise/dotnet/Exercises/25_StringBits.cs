@@ -16,6 +16,12 @@ namespace Exercises
          */
         public string StringBits(string str)
         {
+            /* int everyOther = str.Length;
+             string skip = "";
+             for (int i=0; i < everyOther; i = i +2)
+             {
+                 return skip += everyOther[i];
+             } */
             return null;
         }
     }

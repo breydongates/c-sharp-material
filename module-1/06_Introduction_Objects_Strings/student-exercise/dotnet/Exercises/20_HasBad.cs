@@ -18,10 +18,13 @@ namespace Exercises
          */
         public bool HasBad(string str)
         {
-          /*  if (str.Length < 2)
-            { return false; }
-            if (str.Length == 3)
-            */
+            /*  if (str.Length < 2)
+              { return false; }
+              if (str.Length == 3)
+              */
+            /* if ( str)
+             { return true; }
+             return false;*/
             return false;
         }
     }

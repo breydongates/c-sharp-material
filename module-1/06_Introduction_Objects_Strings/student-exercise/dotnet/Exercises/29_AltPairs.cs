@@ -16,7 +16,10 @@ namespace Exercises
          */
         public string AltPairs(string str)
         {
-            return null;
+            
+            {
+                return str.Substring(0, 2) + str.Substring(4, 5) + str.Substring(8, 9);
+            }
         }
     }
 }

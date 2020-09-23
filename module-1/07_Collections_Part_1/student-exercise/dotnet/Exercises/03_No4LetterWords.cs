@@ -17,7 +17,12 @@ namespace Exercises
          */
         public List<string> No4LetterWords(string[] stringArray)
         {
-            return null;
+            List<string> result = new List<string>();
+            foreach (string value in stringArray)
+            {
+                // to do: if its not a 4 letter word, add it to the result
+            }
+            return result;
         }
 
     }
