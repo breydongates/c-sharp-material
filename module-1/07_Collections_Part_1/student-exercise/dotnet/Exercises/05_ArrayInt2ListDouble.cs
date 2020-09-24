@@ -16,13 +16,16 @@ namespace Exercises
          */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
+            
+            List<double> listDobule = new List<double>(); 
 
+           foreach (int value in intArray)
+            {
+                double finishedDobule = Convert.ToDouble(value);
+                listDobule.Add(finishedDobule / 2);
+            }
             
-            
-            
-            
-            
-            return null;
+            return listDobule;
         }
 
     }

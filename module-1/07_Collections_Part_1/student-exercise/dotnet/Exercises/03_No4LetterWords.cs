@@ -20,6 +20,10 @@ namespace Exercises
             List<string> result = new List<string>();
             foreach (string value in stringArray)
             {
+                if (value.Length != 4)
+                {
+                    result.Add(value);
+                }
                 // to do: if its not a 4 letter word, add it to the result
             }
             return result;

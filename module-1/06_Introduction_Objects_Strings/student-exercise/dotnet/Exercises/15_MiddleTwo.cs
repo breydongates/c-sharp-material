@@ -19,7 +19,7 @@ namespace Exercises
         {
             
 
-            return str.Substring(str.Length/2 -1, str.Length/2 +1);
+            return str.Substring(str.Length/2 -1, 2);
         }
     }
 }

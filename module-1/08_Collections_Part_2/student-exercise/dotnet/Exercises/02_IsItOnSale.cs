@@ -34,16 +34,30 @@ namespace Exercises
          */
         public double IsItOnSale(string itemNumber)
         {
-            // First create a Dictionary that holds this data
-                //"KITCHEN4001"-> 0.20
-                //"GARAGE1070"-> 0.15
-                //"LIVINGROOM"-> 0.10
-                //"KITCHEN6073"-> 0.40
-                //"BEDROOM3434"-> 0.60
-                //"BATH0073"-> 0.15
+            Dictionary<string, double> itemDatabase = new Dictionary<string, double>();
+            //// First create a Dictionary that holds this data
+            itemDatabase.Add("kitchen4001", 0.20);
+            itemDatabase.Add("garage1070", 0.15);
+            itemDatabase.Add("livingroom", 0.10);
+            itemDatabase.Add("kitchen6073", 0.40);
+            itemDatabase.Add("bedroom3434", 0.60);
+            itemDatabase.Add("bath0073", 0.15);
 
-            // Now check the Dictionary you just created for the itemNumber
+            //// Now check the Dictionary you just created for the itemNumber
+            if (itemDatabase != null && itemNumber != "" && itemNumber !=null )
+            {
+            itemNumber = itemNumber.ToLower();
+                if (itemDatabase.ContainsKey(itemNumber))
+                {
+                    
+                    return itemDatabase[itemNumber];
+                }
 
+                else
+                {
+                    return 0.00;
+                }
+            }
             return 0.00;
         }
     }

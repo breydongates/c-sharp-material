@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HashSetExamples
 {
@@ -10,6 +11,8 @@ namespace HashSetExamples
 
             string input = "";
 
+            HashSet<string> flavors = new HashSet<string>();
+
             while (input.ToLower() != "exit")
             {
                 Console.WriteLine("Enter a flavor of soda or type 'Exit' to quit.");
@@ -17,6 +20,15 @@ namespace HashSetExamples
                 input = Console.ReadLine();
 
                 // 2. Check to see if the HashSet contains what we're looking for
+                if (flavors.Contains(input))
+                {
+                    Console.WriteLine("I already have that!");
+
+                }
+                else
+                {
+                    flavors.Add(input);
+                }
 
                 // 3. If the HashSet doesn't have what we're looking for, add it
 
@@ -24,7 +36,20 @@ namespace HashSetExamples
             }
 
             // 4. List all flavors in the hash set
-
+            foreach (string flavor in flavors)
+            {
+                Console.WriteLine("Drink more " + flavor);
+            }
+            if (flavors.Contains("Slurm"))
+            {
+                Console.WriteLine("But we have Slurm, thats all i need!");
+            }
+            int[] numbers = { 1, 1, 2, 3, 5, 8, 5 };
+            HashSet<int> uniqueNumbers = new HashSet<int>();
+            foreach(int number in numbers)
+            {
+                uniqueNumbers.Add(number);
+            }
             Console.WriteLine();
             Console.WriteLine("Have a great day!");
         }
