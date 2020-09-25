@@ -23,10 +23,18 @@ namespace Exercises
         {
             int peterMoney = peterPaul["Peter"];
             int paulMoney = peterPaul["Paul"];
+            
+            
             //int peterQuarter = peterMoney * .25;
-            if (peterMoney >= 500 && paulMoney >= 1000)
+            if (peterMoney >= 5000 && paulMoney >= 10000)
             {
-               // int 
+                peterMoney = peterMoney / 4;
+                paulMoney = paulMoney / 4;
+                int partnership = peterMoney + paulMoney;
+                peterPaul["Peter"] = peterMoney * 3;
+                peterPaul["Paul"] = paulMoney * 3;
+                peterPaul["PeterPaulPartnership"] = partnership ;
+                return peterPaul;
             }
 
             return peterPaul;

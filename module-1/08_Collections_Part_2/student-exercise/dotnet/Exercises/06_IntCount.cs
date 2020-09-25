@@ -21,7 +21,24 @@ namespace Exercises
          */
         public Dictionary<int, int> IntCount(int[] ints)
         {
-            return null;
+            Dictionary<int, int> DictionaryOfInts = new Dictionary<int, int>();
+            foreach (int integer in ints)
+            {
+                // int count = 1;
+
+                if (DictionaryOfInts.ContainsKey(integer))
+                {
+                    DictionaryOfInts[integer] += 1;
+
+                }
+                else
+                {
+                    DictionaryOfInts[integer] = 1;
+                }
+
+            }
+            return DictionaryOfInts;
+            
         }
     }
 }

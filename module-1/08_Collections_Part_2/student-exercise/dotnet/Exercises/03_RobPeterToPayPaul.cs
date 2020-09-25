@@ -22,22 +22,19 @@ namespace Exercises
         {
             int peterCents = peterPaul["Peter"];
             int paulCents = peterPaul["Paul"];
-               int peterHalf= peterCents % 2;
-                int addPaul = paulCents + peterHalf;
             
             // return peterPaul;
-            if (peterCents >= 0 && paulCents <= 1000) //has to return new values into peter paul
+            if (peterCents > 0 && paulCents < 1000) //has to return new values into peter paul
             {
-                peterHalf = peterPaul["Peter"];
-                addPaul = peterPaul["Paul"];
+               peterCents = peterCents / 2;
+                paulCents = paulCents + peterCents;
+                peterPaul["Peter"] = peterCents;
+                peterPaul["Paul"] = paulCents ;
                 return peterPaul;
-
+              
             }
-            else if (paulCents >= 1000 || peterCents < 0)
-            {
-
-                return peterPaul;
-            }
+            
+           
             return peterPaul;
         }
     }

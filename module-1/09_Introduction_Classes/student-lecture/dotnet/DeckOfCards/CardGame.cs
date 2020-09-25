@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using DeckOfCards.PlayingCards;
 
 namespace DeckOfCards
 {
@@ -13,6 +15,8 @@ namespace DeckOfCards
         public void Play()
         {
             // 1. Create a list to store cards
+            List<Card> cards = new List<Card>();
+
             bool keepGoing = true;
             while (keepGoing)
             {
@@ -47,13 +51,21 @@ namespace DeckOfCards
                         // 8. Use a custom constructor
 
                         // 3. Instantiate a new Card instance
-
+                        Card playingCard = new Card(isFaceUp);
+                        playingCard.Value = value;
+                        playingCard.Suit  = suit;
+                        //playingCard.IsFaceUp = isFaceUp;
                         // 4. Add the card object to the list of cards
-
+                        cards.Add(playingCard);
                         break;
 
                     case "2":
                         Console.WriteLine("Displaying all of the cards.");
+                        foreach (Card card in cards)
+                        {
+                            Console.WriteLine(card.DisplayText);
+                        }
+                             
 
                         // 5. Make a DisplayText property on Card
                         // 6. Get the value from card.DisplayText and display it
@@ -61,6 +73,13 @@ namespace DeckOfCards
 
                     case "3":
                         Console.WriteLine($"Flipping the cards.");
+
+                        foreach(Card card in cards)
+                        {
+                            card.Flip();
+                            //card.IsFaceUp = !card.IsFaceUp;
+                        }
+
                         // 7a. Set IsFaceUp Directly
                         // 7b. Make IsFaceUp have a private setter
                         // 7c. Add a Flip method on Card, then call it here
