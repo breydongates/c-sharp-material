@@ -8,7 +8,7 @@ namespace Lecture
     {
         static void Main()
         {
-           //
+            //
             // OLD MACDONALD
             //
             Console.WriteLine("Old MacDonald had a farm ee ay ee ay oh");
@@ -17,17 +17,16 @@ namespace Lecture
             FarmAnimal animal = new Horse();
 
             // Can we swap out any animal in place here?
-                         
+
+            // What about a few other animals?
+
+            // What about tractors?
+
             Console.WriteLine($"And on his farm there was a {animal.Name} ee ay ee ay oh");
             Console.WriteLine($"With a {animal.MakeSoundTwice()} here and a {animal.MakeSoundTwice()} there");
             Console.WriteLine($"Here a {animal.MakeSoundOnce()}, there a {animal.MakeSoundOnce()} everywhere a {animal.MakeSoundTwice()}");
             Console.WriteLine("Old Macdonald had a farm, ee ay ee ay oh");
             Console.WriteLine();
-            
-
-            // What if we wanted to sing about other things on the farm that were 
-            // singable but not farm animals?
-            // Can it be done? 
 
             Console.ReadLine();
         }
