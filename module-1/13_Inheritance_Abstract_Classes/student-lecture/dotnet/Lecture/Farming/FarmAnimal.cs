@@ -6,7 +6,7 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal : Object, IMakesNoise
+    public class FarmAnimal : IMakesNoise
     {       
         public string Name { get; set; }
 
@@ -15,14 +15,14 @@ namespace Lecture.Farming
             this.Name = name;
         }
 
-        public virtual string MakeSoundOnce()
+        public virtual string MakeSoundOnce(bool isEvening)
         {
             return "";
         }
 
-        public string MakeSoundTwice()
+        public string MakeSoundTwice(bool isEvening)
         {
-            return this.MakeSoundOnce() + " " + this.MakeSoundOnce();
+            return this.MakeSoundOnce(isEvening) + " " + this.MakeSoundOnce(isEvening);
         }
 
         public void Pet()

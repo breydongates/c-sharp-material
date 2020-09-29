@@ -4,18 +4,8 @@ using System.Text;
 
 namespace Lecture.Farming
 {
-    public class Tractor : IMakesNoise, IRusts
+    public class Tractor : IMakesNoise
     {
-        public void PlowField()
-        {
-
-        }
-
-        public void Rust(int numTimes)
-        {
-
-        }
-
         public string Name
         {
             get
@@ -24,14 +14,29 @@ namespace Lecture.Farming
             }
         }
 
-        public string MakeSoundOnce()
+        public string MakeSoundOnce(bool isEvening)
         {
+            if (isEvening)
+            {
+                return "...";
+            }
+
             return "vvvvvvvvvvvvvvvroooooom";
         }
 
-        public string MakeSoundTwice()
+        public string MakeSoundTwice(bool isEvening)
         {
+            if (isEvening)
+            {
+                return "...";
+            }
+
             return "VRRRRRROOOOOOOOOOOOM";
+        }
+
+        public void PlowField()
+        {
+
         }
     }
 }
