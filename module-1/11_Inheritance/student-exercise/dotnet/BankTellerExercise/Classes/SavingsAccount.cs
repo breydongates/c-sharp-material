@@ -14,19 +14,16 @@
 
         public override decimal Withdraw(decimal amountToWithdraw)
         {
-            if (Balance - amountToWithdraw < 150 && Balance - amountToWithdraw >0)
+            if (this.Balance - amountToWithdraw < 150 && this.Balance > amountToWithdraw)
             {
-                base.Withdraw(amountToWithdraw + 2);
-                return Balance;
+                return base.Withdraw(amountToWithdraw + 2);
             }
-
-            else if (Balance >= amountToWithdraw )
+            else if (this.Balance >= 150 && this.Balance > amountToWithdraw)
             {
-                return Balance;
+                return base.Withdraw(amountToWithdraw);
             }
             else
-            { 
-                base.Withdraw(amountToWithdraw);
+            {
                 return Balance;
             }
 

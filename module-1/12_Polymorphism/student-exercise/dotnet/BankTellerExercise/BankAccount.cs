@@ -1,6 +1,6 @@
 ﻿namespace BankTellerExercise
 {
-    public class BankAccount
+    public class BankAccount 
     {
 
         public string AccountHolderName { get; private set; }
@@ -20,6 +20,7 @@
             AccountNumber = accountNumber;
             Balance = balance;
         }
+        
 
         public int Deposit(int amountToDeposit)
         {
@@ -31,6 +32,14 @@
         {
             Balance -= amountToWithdraw;
             return Balance;
+        }
+
+        public virtual int TransferTo(BankAccount destinationAccount, int transferAmount) // wthdraws transferAmount from this account and deposits into destination account
+        {
+            
+            Balance = Balance - transferAmount ;
+            
+            return  destinationAccount.Balance += transferAmount ;
         }
     }
 }

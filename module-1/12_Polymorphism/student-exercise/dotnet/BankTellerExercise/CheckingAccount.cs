@@ -12,7 +12,6 @@ namespace BankTellerExercise
         {
 
         }
-
         public new int Withdraw(int amountToWithdraw)
         {
             // Only allow the withdraw if the balance isn't going to go below -$100
@@ -27,6 +26,12 @@ namespace BankTellerExercise
                 }
             }
             return Balance;
+        }
+        public override int TransferTo(BankAccount destinationAccount, int transferAmount)
+        {
+            
+                
+            return base.Balance + transferAmount;
         }
 
     }
