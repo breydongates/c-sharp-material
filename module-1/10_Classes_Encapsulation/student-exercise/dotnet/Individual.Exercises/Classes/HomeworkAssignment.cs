@@ -3,8 +3,7 @@ namespace Individual.Exercises.Classes
 {
     public class HomeworkAssignment
     {
-        private int earnedMarks;
-        private int possibleMarks;
+        
 
         public HomeworkAssignment(int possibleMarks, string submitterName)
         {
@@ -24,32 +23,29 @@ namespace Individual.Exercises.Classes
 
         public string LetterGrade
         {
-            get { return LetterGrade; }
-            set
+            get 
+            
             {
-         double grade = earnedMarks / possibleMarks;
+         double grade = EarnedMarks / (double)PossibleMarks;
 
 
                 if (grade  >= 0.90)
                 {
-                    LetterGrade= "A";
+                    return "A";
                 }
                 if (grade>= 0.80 && grade <= 0.89)
                 {
-                   LetterGrade= "B";
+                   return "B";
                 }
                 if (grade>= 0.70 && grade <= 0.79)
                 {
-                    LetterGrade= "C";
+                    return "C";
                 }
                 if (grade >= 0.60 && grade <= 0.69)
                 {
-                    LetterGrade= "D";
+                    return "D";
                 }
-                else if (grade < 0.60)
-                {
-                    LetterGrade= "F";
-                }
+                return "F";
 
             }
 

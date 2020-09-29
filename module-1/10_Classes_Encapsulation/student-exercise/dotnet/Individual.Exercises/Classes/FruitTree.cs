@@ -2,15 +2,13 @@
 {
     public class FruitTree
     {
-        private string typeOfFruit;
-        private int startingPiecesOfFruit;
-        private int piecesOfFruitLeft;
-
+        
 
         public FruitTree (string typeOfFruit, int startingPiecesOfFruit)
         {
             this.TypeOfFruit = typeOfFruit;
             this.StartingPiecesOfFruit = startingPiecesOfFruit;
+            this.PiecesOfFruitLeft = startingPiecesOfFruit;
         }
 
         public string TypeOfFruit { get; }
@@ -20,10 +18,10 @@
         public bool PickFruit (int numberOfPiecesToRemove)
         { 
             
-            if (PiecesOfFruitLeft > numberOfPiecesToRemove)
+            if (PiecesOfFruitLeft >= numberOfPiecesToRemove)
 
             {
-                this.piecesOfFruitLeft = startingPiecesOfFruit - numberOfPiecesToRemove;
+                this.PiecesOfFruitLeft -= numberOfPiecesToRemove;
                 return true;
             }
             else return false;
