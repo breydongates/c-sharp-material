@@ -8,7 +8,7 @@ namespace Lecture
         static void Main()
         {
             // Old MacDonald's farm is now in a class!
-            Farm farm = new Farm();
+            Farm farm = new Farm("Old MacDonald");
 
             // Add all of our animals and a tractor
             farm.Add(new Dragon());
