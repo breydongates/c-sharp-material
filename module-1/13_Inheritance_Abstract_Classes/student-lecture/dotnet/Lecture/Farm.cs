@@ -4,26 +4,35 @@ using System.Collections.Generic;
 
 namespace Lecture
 {
+    /// <summary>
+    /// Manages everything related to singing about everything on a farm
+    /// </summary>
     public class Farm
     {
-        private readonly List<IMakesNoise> thingsOnFarm;
+        private readonly List<IMakesNoise> thingsOnFarm = new List<IMakesNoise>();
 
-        public Farm()
+        /// <summary>
+        /// Adds an IMakesNoise thing to the farm.
+        /// </summary>
+        /// <param name="thing">The thing to add to the farm</param>
+        public void Add(IMakesNoise thing)
         {
-            this.thingsOnFarm = new List<IMakesNoise>
-            {
-                new Dragon(),
-                new Horse(),
-                new Platypus(),
-                new Tractor()
-            };
+            this.thingsOnFarm.Add(thing);
         }
 
+        /// <summary>
+        /// Gets or sets whether or not it is evening. 
+        /// If it is evening, things on the farm will behave differently.
+        /// </summary>
         public bool IsEvening { get; set; }
 
+        /// <summary>
+        /// Sing about everything currently in the farm
+        /// </summary>
         public void SingAbout()
         {
             Console.WriteLine("Old MacDonald had a farm ee ay ee ay oh");
+            Console.WriteLine();
 
             foreach (IMakesNoise thing in this.thingsOnFarm)
             {

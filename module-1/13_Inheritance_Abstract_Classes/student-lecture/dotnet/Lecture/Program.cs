@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lecture.Farming;
+using System;
 
 namespace Lecture
 {
@@ -6,10 +7,20 @@ namespace Lecture
     {
         static void Main()
         {
+            // Old MacDonald's farm is now in a class!
             Farm farm = new Farm();
 
-            farm.IsEvening = false; // We'll want to change this to see what happens
+            // Add all of our animals and a tractor
+            farm.Add(new Dragon());
+            farm.Add(new Horse());
+            farm.Add(new Platypus());
+            farm.Add(new Tractor());
+            // What happens if he gets a cat? (or a generic animal)
 
+            // Changing the time of day changes if animals make noise or sleep
+            farm.IsEvening = false;
+
+            // Sing about everything on the farm
             farm.SingAbout();
 
             Console.ReadLine();

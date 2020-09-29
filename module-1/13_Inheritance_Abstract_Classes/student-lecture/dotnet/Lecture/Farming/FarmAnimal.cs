@@ -17,7 +17,11 @@ namespace Lecture.Farming
 
         public virtual string MakeSoundOnce(bool isEvening)
         {
+            // Maybe the default behavior should care if it's evening?
+
             return "";
+
+            // What if we had a separate MakeSound method that each inheriting class had to implement?
         }
 
         public string MakeSoundTwice(bool isEvening)
