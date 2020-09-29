@@ -27,12 +27,7 @@ namespace BankTellerExercise
             }
             return Balance;
         }
-        public override int TransferTo(BankAccount destinationAccount, int transferAmount)
-        {
-            
-                
-            return base.Balance + transferAmount;
-        }
+      
 
     }
 }

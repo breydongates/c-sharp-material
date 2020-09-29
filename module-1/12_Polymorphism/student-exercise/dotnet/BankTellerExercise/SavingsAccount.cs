@@ -11,11 +11,7 @@ namespace BankTellerExercise
         {
 
         }
-        public override int TransferTo(BankAccount destinationAccount, int transferAmount)
-        {
-           
-            return Balance;
-        }
+      
         public override int Withdraw(int amountToWithdraw)
         {
             // only perform transaction of positive $ and room for fee
