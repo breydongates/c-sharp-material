@@ -15,10 +15,12 @@ namespace Lecture
             farm.Add(new Horse());
             farm.Add(new Platypus());
             farm.Add(new Tractor());
+            farm.Add(new Cat());
+          //  farm.Add(new FarmAnimal("Cat")); // new farm animal "Cat" created
             // What happens if he gets a cat? (or a generic animal)
 
             // Changing the time of day changes if animals make noise or sleep
-            farm.IsEvening = false;
+            farm.IsEvening = true;
 
             // Sing about everything on the farm
             farm.SingAbout();

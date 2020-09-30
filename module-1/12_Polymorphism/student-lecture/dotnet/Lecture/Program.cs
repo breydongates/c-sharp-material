@@ -19,6 +19,7 @@ namespace Lecture
             farm.Add(new Horse());
             farm.Add(new Platypus());
            farm.Add(new Tractor());
+            IMakesNoise[] farmArray = farm.ToArray();
             // Let's try singing about a Farm Animal
             //FarmAnimal animal;
             //animal = new Dragon();

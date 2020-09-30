@@ -26,7 +26,7 @@ namespace Individual.Exercises.Classes
             get 
             
             {
-         double grade = EarnedMarks / (double)PossibleMarks;
+     double grade = EarnedMarks / (double)PossibleMarks;
 
 
                 if (grade  >= 0.90)

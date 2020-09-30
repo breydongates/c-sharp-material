@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a single bid in an auction.
     /// </summary>
-    public class Bid 
+    public class Bid  // :object. everything always inherits from object
     {
         /// <summary>
         /// Constructor for Bid object. Each Bid requires a bidder and bidAmount
@@ -27,6 +27,11 @@
         /// This is a readonly property
         /// </summary>
         public int BidAmount { get; }
+
+        public override string ToString()
+        {
+            return this.Bidder + " bid " + this.BidAmount;
+        }
 
     }
 }
