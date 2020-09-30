@@ -12,7 +12,7 @@ namespace BankTellerExercise
 
         public string PhoneNumber { get; set; }
 
-        private List<IAccountable> listOfAccounts = new List<IAccountable>();
+        private List<IAccountable> listAccounts = new List<IAccountable>();
 
         public bool IsVip
         
@@ -20,7 +20,7 @@ namespace BankTellerExercise
             {
                 int totalBalance = 0;
 
-                foreach (IAccountable account in listOfAccounts)
+                foreach (IAccountable account in listAccounts)
                 {
                     totalBalance += account.Balance;
 
@@ -43,13 +43,13 @@ namespace BankTellerExercise
 
         public void AddAccount(IAccountable newAccount)
         {
-            listOfAccounts.Add(newAccount);
+            listAccounts.Add(newAccount);
 
         }
 
         public IAccountable[] GetAccounts()
         {
-            return listOfAccounts.ToArray();
+            return listAccounts.ToArray();
         }
 
     }
