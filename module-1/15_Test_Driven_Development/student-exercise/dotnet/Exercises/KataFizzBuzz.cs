@@ -23,7 +23,7 @@ namespace Exercises
             {
                 return "Fizz";
             }
-            else if (inputNumbers % 5 == 0 && inputNumbers <= 100)
+            else if (inputNumbers % 5 == 0 && inputNumbers <= 100 || inputNumbers.ToString().Contains("5") && inputNumbers <= 100)
             {
                 return "Buzz";
             }

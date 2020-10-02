@@ -19,6 +19,7 @@ namespace Exercises.Tests
         [DataRow(22, "22")]
         [DataRow(1111, "")]
         [DataRow(13, "Fizz")]
+        [DataRow(52, "Buzz")]
         public void IntShouldReturnNumberToString(int inputNumbers, string exportStrings)
         {
             KataFizzBuzz fizz = new KataFizzBuzz();
