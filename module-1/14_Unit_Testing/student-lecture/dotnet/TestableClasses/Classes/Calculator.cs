@@ -13,12 +13,12 @@ namespace TestableClasses.Classes
 
         public int Add(int x, int y)
         {
-            return x + x;
+            return x + y;
         }
 
         public int Divide(int x, int y)
         {
-            return x / y;
+            return x / y; // Divide(x,y);
         }
 
         public int GetLargestValue(int[] numbers)
