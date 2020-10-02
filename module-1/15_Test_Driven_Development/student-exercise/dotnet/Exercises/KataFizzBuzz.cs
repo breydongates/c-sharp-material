@@ -11,11 +11,15 @@ namespace Exercises
         public string NumsToString(int inputNumbers)
         {
 
-            if (inputNumbers % 5 == 0 && inputNumbers % 3 == 0 && inputNumbers <= 100 )
+             if (inputNumbers <= 0 || inputNumbers >= 100)
+            {
+                return "";
+            }
+            else if (inputNumbers % 5 == 0 && inputNumbers % 3 == 0 && inputNumbers <= 100)
             {
                 return "FizzBuzz";
             }
-           else if (inputNumbers % 3 == 0 && inputNumbers <= 100)
+            else if (inputNumbers % 3 == 0 && inputNumbers <= 100)
             {
                 return "Fizz";
             }
@@ -23,7 +27,7 @@ namespace Exercises
             {
                 return "Buzz";
             }
-            else 
+            else
             {
                 return inputNumbers.ToString();
             }
