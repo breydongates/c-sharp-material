@@ -12,7 +12,8 @@ namespace Exercises.Tests
     {
         [TestMethod]
         [DataRow(1, "1")]
-        public void IntShouldReturnFizzWhenNumberIsThree(int inputNumbers, string exportStrings)
+        [DataRow(3, "Fizz")]
+        public void IntShouldReturnNumberToString(int inputNumbers, string exportStrings)
         {
             KataFizzBuzz fizz = new KataFizzBuzz();
             //arrange

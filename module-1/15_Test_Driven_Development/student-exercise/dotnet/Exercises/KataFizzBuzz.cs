@@ -10,7 +10,18 @@ namespace Exercises
     {
       public string NumsToString(int inputNumbers)
         {
-            return inputNumbers.ToString();
+          
+                if (inputNumbers % 3 == 0 && inputNumbers <= 100)
+                {
+                    return "Fizz";
+                }
+                else
+                {
+                    return inputNumbers.ToString();
+                }
+            
+
+          
 
         }
 
