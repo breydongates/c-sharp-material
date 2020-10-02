@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TDD.Classes;
 
 namespace TDD.Tests
 {
@@ -11,16 +12,78 @@ namespace TDD.Tests
         // Our requirements:
 
         // 0. We can create a payroll system
+        [TestMethod]
+        public void PayrollSystemShouldInitializeCorrectly()
+        {
+            // Arrange
+            PayrollSystem system = new PayrollSystem();
+
+            // Act
+            // Act is the act of creating the system in arrange
+
+            // Assert
+            Assert.IsNotNull(system);
+            Assert.AreEqual(0, system.TotalPayroll);
+        }
 
         // 1. HireEmployee should accept a name and salary and return true
+        [TestMethod]
+        public void HireEmployeeShouldSucceed()
+        {
+            // Arrange
+            PayrollSystem system = new PayrollSystem();
 
-        // 2. A TotalPayroll property which gives us the current total pay
+            // Act
+            bool result = system.HireEmployee("Bruce Wayne", 75000);
 
-        // 3. FireEmployee should accept a name and remove that employee from the organization(TotalPayroll should no longer include them)
+            // Assert
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        [DataRow("John Fulton", 1000000)]
+        [DataRow("Matt Eland", 0)]
+        public void TotalPayrollReflectsHiredEmployee(string name, double salary)
+        {
+            //arrange
+            PayrollSystem system = new PayrollSystem();
+            system.HireEmployee(name, salary);
 
-        // 4. Employees property should return the names of all current employees
+            //act
+            double result = system.TotalPayroll;
 
-        // 5. GiveRaise should increase all current employees salaries by a specific %
+            //assert
+            Assert.AreEqual(salary, result);
+        }
+        // 3. fire emloyee should accept a name and remove that employee
 
+        [TestMethod]
+        public void FireEmployeeShouldReduceSalary()
+        {
+            //Arrange
+            PayrollSystem system = new PayrollSystem();
+            system.HireEmployee("Big Head", 42000);
+
+            //act
+            system.FireEmployee("Big Head");
+
+            //assert
+            Assert.AreEqual(0, system.TotalPayroll);
+        }
+        [TestMethod]
+        public void FireEmployeeShouldDoNothingWithNonEmployees()
+        {
+            //Arrange
+            PayrollSystem system = new PayrollSystem();
+          
+
+            //act
+            system.FireEmployee("Big Head");
+
+            //assert
+            Assert.AreEqual(0, system.TotalPayroll);
+        }
     }
 }
+
+
+
