@@ -8,6 +8,12 @@ namespace Exercises
 {
     public class KataFizzBuzz
     {
+      public string NumsToString(int inputNumbers)
+        {
+            return inputNumbers.ToString();
+
+        }
+
 
     }
 }

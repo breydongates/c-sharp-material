@@ -7,9 +7,21 @@ using System.Threading.Tasks;
 
 namespace Exercises.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class KataFizzBuzzTests
     {
-        
+        [TestMethod]
+        [DataRow(1, "1")]
+        public void IntShouldReturnFizzWhenNumberIsThree(int inputNumbers, string exportStrings)
+        {
+            KataFizzBuzz fizz = new KataFizzBuzz();
+            //arrange
+
+            //act
+            string result = fizz.NumsToString(inputNumbers);
+
+            //assert
+            Assert.AreEqual(exportStrings, result);
+        }
     }
 }
