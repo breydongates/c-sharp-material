@@ -22,8 +22,8 @@ Your code will be evaluated based on the following criteria:
 
 Create a program to write out the result of FizzBuzz (1 to 300) to a file called `FizzBuzz.txt`. The file should be written out to the same directory as this README file.
 
-* If the number is divisible by 3 or contains a 3, print “Fizz.”
-* If the number is divisible by 5 or contains a 5, print “Buzz.”
+* If the number is divisible by 3, print “Fizz.”
+* If the number is divisible by 5, print “Buzz.”
 * If the number is divisible by 3 and 5, print “FizzBuzz.”
 * Otherwise, print the number.
 
