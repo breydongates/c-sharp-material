@@ -4,13 +4,17 @@ using System.Text;
 
 namespace Capstone.Classes
 {
+    /// <summary>
+    /// This class is responsible for holding interview questions and providing random questions to users
+    /// </summary>
     public class QuestionManager
     {
-        private readonly List<InterviewQuestion> items = new List<InterviewQuestion>();
+        private List<InterviewQuestion> items = new List<InterviewQuestion>();
 
-        private readonly string filePath = @"C:\Students";
+        // TODO: This class should provide a way to add an interview question
 
-        // TODO: When this class is created, it should load InterviewQuestions from questions.csv in C:\Students
-   
+        // TODO: This class should provide a way to get all interview questions
+        
+        // TODO: This class should provide a way to get a random interview question
     }
 }
