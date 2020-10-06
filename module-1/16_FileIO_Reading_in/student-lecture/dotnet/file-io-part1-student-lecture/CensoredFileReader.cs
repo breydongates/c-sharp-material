@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace FileInputLecture
@@ -26,15 +27,25 @@ namespace FileInputLecture
             Console.WriteLine("Censoring the contents of " + filePath);
 
             // Add a using statement that creates a StreamReader pointing at the correct file
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                // While we haven't reached the end of the file...
+                while (!reader.EndOfStream)
+                {
 
-            // While we haven't reached the end of the file...
+                    // Read in the next line from the file
+                    string line = reader.ReadLine();
 
-            // Read in the next line from the file
-
-            // If the line needs censoring,
-            // ... Censor the line as needed by replacing WordToCensor with CensoredText
-            // ... Print the censored line to the Console
-
+                    // If the line needs censoring,
+                    if (line.Contains(this.WordToCensor))
+                    {
+                        // ... Censor the line as needed by replacing WordToCensor with CensoredText
+                        line = line.Replace(this.WordToCensor, this.CensoredText);
+                        // ... Print the censored line to the Console
+                        Console.WriteLine(line);
+                    }
+                }
+            }
             Console.WriteLine("Done Censoring");
         }
     }
