@@ -25,7 +25,7 @@ namespace FileInputLecture
             try
             {
                 Console.WriteLine($"Censoring the contents of {sourceFilePath}");
-                
+
                 List<string> censoredStrings = BuildCensoredStrings(sourceFilePath);
 
                 WriteCensoredStrings(censoredStrings, destFilePath);
@@ -38,15 +38,26 @@ namespace FileInputLecture
             {
                 Console.WriteLine($"An error occurred trying to censor the file: {ex.Message}");
             }
-            // TODO: This would be good to put in a finally
-            Console.WriteLine("Done Censoring");
+            finally
+            {
+                // TODO: This would be good to put in a finally
+                Console.WriteLine("Done Censoring");
+            }
         }
 
         private void WriteCensoredStrings(List<string> contents, string destFilePath)
         {
             // Open a StreamWriter to overwrite the file with new contents
-
-            // Loop over censored strings and write each one to the file
+            bool shouldAppend = false;
+            using (StreamWriter writer = new StreamWriter(destFilePath, shouldAppend))
+            {
+                // Loop over censored strings and write each one to the file
+                foreach(string line in contents)
+                {
+                    writer.Write("> ");
+                    writer.WriteLine(line);
+                }
+            }
         }
 
         private List<string> BuildCensoredStrings(string filePath)
