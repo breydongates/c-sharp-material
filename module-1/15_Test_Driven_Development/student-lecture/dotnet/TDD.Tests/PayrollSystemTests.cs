@@ -82,6 +82,44 @@ namespace TDD.Tests
             //assert
             Assert.AreEqual(0, system.TotalPayroll);
         }
+
+        //4. employees property should return the names of all employees
+
+        [TestMethod]
+        public void EmployeesShouldListAllEmployees()
+        {
+            //arrange
+            PayrollSystem system = new PayrollSystem();
+            system.HireEmployee("Bruce Banner", 75000);
+            system.HireEmployee("Peter Parker", 50000);
+            string[] expected = { "Bruce Banner", "Peter Parker" };
+            //act
+            string[] result = system.Employees;
+
+            //assert
+            Assert.AreEqual(2, result.Length);
+            CollectionAssert.AreEquivalent(expected, result); // order doesnt matter in areequivilant 
+        }
+
+        [TestMethod]
+        public void EmployeesShouldNotBeEmployeesAfterBeingFired()
+        {
+            //arrange
+            PayrollSystem system = new PayrollSystem();
+            system.HireEmployee("Milton", 35000);
+
+            //act
+            system.FireEmployee("Milton");
+            string[] employees = system.Employees;
+            //assert
+
+            CollectionAssert.DoesNotContain(system.Employees, "Milton");
+
+
+
+        }
+
+        //5. GiveRaise should increase all current employee salaries by a 
     }
 }
 

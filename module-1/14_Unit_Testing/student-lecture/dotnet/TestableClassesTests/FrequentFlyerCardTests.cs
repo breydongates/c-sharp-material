@@ -14,11 +14,30 @@ namespace TestableClassesTests
         {
             // arrange
             FrequentFlyerCard card = new FrequentFlyerCard("Vinny");
-
+            int initialMiles = card.RewardMiles;
+            int milesToAdd = 5000;
             //act
-            card.AddMiles(5000);
+            card.AddMiles(milesToAdd);
             //assert
-            Assert.AreEqual(5000, card.RewardMiles);
+            int expected = initialMiles + milesToAdd;
+            Assert.AreEqual(expected, card.RewardMiles);
+        }
+
+        [TestMethod]
+        public void StringUpperCaseWorksForFirstString()
+        {
+            //arrange
+            StringHelper helper = new StringHelper();
+            string[] otherStrings = {"Hello", "World" };
+            //act
+
+           string[] result = helper.ConvertToUpperCase(otherStrings);
+            //assert
+            Assert.AreEqual("HELLO", result[0]);
+           // Assert.AreEqual("WORLD", result[1]);
+
+
         }
     }
+
 }

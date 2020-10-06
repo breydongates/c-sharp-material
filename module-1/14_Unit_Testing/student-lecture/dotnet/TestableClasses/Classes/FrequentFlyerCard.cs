@@ -9,6 +9,7 @@ namespace TestableClasses.Classes
         public FrequentFlyerCard(string owner)
         {
             this.Owner = owner;
+            this.RewardMiles = 1000;
         }
 
         public string Owner { get; }
@@ -32,5 +33,8 @@ namespace TestableClasses.Classes
 
             return true;
         }
+
+        
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace TDD.Classes
 {
@@ -19,10 +20,22 @@ namespace TDD.Classes
 
         public void FireEmployee(string name)
         {
-            this.TotalPayroll -= this.employeeSalaries[name];
-            this.employeeSalaries[name] = 0;   
+            if (this.employeeSalaries.ContainsKey(name))
+            {
+                this.TotalPayroll -= this.employeeSalaries[name];
+                this.employeeSalaries.Remove(name);
+                //this.employeeSalaries[name] = 0;
+            }
         }
         public double TotalPayroll { get; private set; }
+
+        public string[] Employees
+        {
+            get
+            {
+                return this.employeeSalaries.Keys.ToArray();
+            }
+        }
 
         
     }

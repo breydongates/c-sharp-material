@@ -9,7 +9,7 @@ namespace WordSearch
 {
     public class WordSearchApp
     {
-        
+
 
         public void Run()
         {
@@ -24,20 +24,21 @@ namespace WordSearch
             //Console.WriteLine("Should the search be case sensitive? (Y/N)");
             //string caseSensitive = Console.ReadLine();
            
-
+            
                 //3. Open the file
+
                 using (StreamReader read = new StreamReader(fileLocater))
                 {
                     //4. Loop through each line in the file
 
-                        int counter = 1;
+                    int counter = 1;
                     while (!read.EndOfStream)
                     {
 
                         string line = counter++ + ") " + read.ReadLine();
-                    
+
                         //5. If the line contains the search string, print it out along with its line number
-                        //for (int i = 1; i < ; i++)
+                        
                         {
                             if (!line.Contains(searchWord))
                             {
@@ -49,9 +50,13 @@ namespace WordSearch
 
 
                 }
+
+
             }
+
 
             // See Part 2 in the Readme.md file for additional changes
         }
     }
+}
 
