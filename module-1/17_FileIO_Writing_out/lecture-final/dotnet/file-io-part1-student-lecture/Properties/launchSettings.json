@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileInputLecture": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\users\\student\\alice.txt more parameters go here"
+    }
+  }
+}
