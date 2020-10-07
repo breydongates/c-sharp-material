@@ -88,5 +88,29 @@ namespace FileInputLecture
 
             return censoredStrings;
         }
+        private void CensorAndWrite(string filePath, string destPath)
+        {
+            // Add a using statement that creates a StreamReader pointing at the correct file
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                // While we haven't reached the end of the file...
+                while (!reader.EndOfStream)
+                {
+                    // Read in the next line from the file
+                    string line = reader.ReadLine();
+
+                    // If the line needs censoring,
+                    if (line.Contains(this.WordToCensor))
+                    {
+                        // Censor the line as needed by replacing WordToCensor with CensoredText
+                        line = line.Replace(this.WordToCensor, this.CensoredText);
+
+                        // Add the censored string to a collection of strings
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+        }
+
     }
 }

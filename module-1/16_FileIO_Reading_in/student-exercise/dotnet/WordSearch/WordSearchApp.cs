@@ -21,11 +21,12 @@ namespace WordSearch
             Console.WriteLine("What is the fully qualified name of the file that should be searched?");
             string fileLocater = Console.ReadLine();
 
-            //Console.WriteLine("Should the search be case sensitive? (Y/N)");
-            //string caseSensitive = Console.ReadLine();
-           
-            
-                //3. Open the file
+            Console.WriteLine("Should the search be case sensitive? (Y/N)");
+           string caseSensitive = Console.ReadLine();
+            if (caseSensitive == "Y")
+
+            //3. Open the file
+            {
 
                 using (StreamReader read = new StreamReader(fileLocater))
                 {
@@ -38,7 +39,7 @@ namespace WordSearch
                         string line = counter++ + ") " + read.ReadLine();
 
                         //5. If the line contains the search string, print it out along with its line number
-                        
+
                         {
                             if (!line.Contains(searchWord))
                             {
@@ -50,13 +51,40 @@ namespace WordSearch
 
 
                 }
+            }
+            else if (caseSensitive == "N")
+            {
+                searchWord = searchWord.ToLower();
+                using (StreamReader read = new StreamReader(fileLocater))
+                {
+                    //4. Loop through each line in the file
+
+                    int counter = 1;
+                    while (!read.EndOfStream)
+                    {
+
+                        string line = counter++ + ") " + read.ReadLine();
+
+                        //5. If the line contains the search string, print it out along with its line number
+
+                        {
+                            if (!line.Contains(searchWord))
+                            {
+                                continue;
+                            }
+                        }
+                        Console.WriteLine(line);
+                    }
 
 
+                }
             }
 
-
-            // See Part 2 in the Readme.md file for additional changes
         }
+
+
+        // See Part 2 in the Readme.md file for additional changes
     }
 }
+
 

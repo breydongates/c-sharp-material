@@ -1,14 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace FizzWriter
 {
-    class Program
+   public  class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-        }
+            string myPath = GetReadmeDir();
+            string destFile = Path.Combine(myPath, "FizzBuzz.txt");
+     
+                bool exists = false;
+                using (StreamWriter writer = new StreamWriter(destFile, exists))
+                {
 
+
+                    for (int i = 1; i <= 300; i++)
+                        if (i % 3 == 0 && i % 5 == 0)
+                        {
+                            writer.WriteLine("FizzBuzz");
+                        }
+                        else if (i % 3 == 0)
+                        {
+                            writer.WriteLine("Fizz");
+                        }
+                        else if (i % 5 == 0)
+                        {
+                            writer.WriteLine("Buzz");
+                        }
+                        else
+                        {
+                            writer.WriteLine(i);
+                        }
+
+                }
+            
+        }
         /// <summary>
         /// Gets the full path to the directory with the readme file
         /// </summary>
@@ -24,5 +52,23 @@ namespace FizzWriter
 
             return readmeDir.FullName;
         }
+
     }
-}
+}            //for (int i = 1; i <= 300; i++)
+             //{
+             //    if(i % 3 == 0 && i % 5 == 0)
+             //    {
+             //        Console.WriteLine("FizzBuzz");
+             //    }
+             //    else if (i % 3 == 0)
+             //    {
+             //        Console.WriteLine("Fizz");
+             //    }
+             //    else if (i % 5 == 0)
+             //    {
+             //        Console.WriteLine("Buzz");
+             //    }
+             //    else
+             //    {
+             //        Console.WriteLine(i);
+             //    }

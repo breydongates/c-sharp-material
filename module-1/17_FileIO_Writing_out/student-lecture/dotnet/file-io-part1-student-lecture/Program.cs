@@ -14,7 +14,7 @@ namespace FileInputLecture
             string destFile = Path.Combine(myPath, "redacted.txt");
 
             // Create a redacted copy of the modified lines from source file in redacted.txt
-            CensoredFileReader censor = new CensoredFileReader("Alice", "Alicia");
+            CensoredFileReader censor = new CensoredFileReader("Alice", "[REDACTED]");
             censor.CensorFile(sourceFile, destFile);
         }
     }
