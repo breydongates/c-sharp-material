@@ -12,8 +12,7 @@ namespace Capstone.Classes
     /// </summary>
     public class UserInterface
     {
-        private QuestionManager manager = new QuestionManager();
-        private FileAccess fileAccess = new FileAccess();
+        // We'll want to create some of our objects here
 
         public void RunInterface()
         {
