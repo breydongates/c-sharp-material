@@ -99,3 +99,4 @@ WHERE continent = 'Europe'
 SELECT 2020-indepyear AS 'Number of years since independence'
 FROM country
 WHERE indepyear IS NOT NULL
+
