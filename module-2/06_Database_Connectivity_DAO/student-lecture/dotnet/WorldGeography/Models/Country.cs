@@ -25,7 +25,7 @@ namespace WorldGeography.Models
 
         public override string ToString()
         {
-            return Code.PadRight(5) + Name.PadRight(20) + Continent.PadRight(30) + SurfaceArea.ToString("N2").PadRight(10) + Population.ToString("N0").PadRight(15) + GovernmentForm.PadRight(30);
+            return Code.PadRight(5) + Name.PadRight(20) + Continent.PadRight(30) + Region.PadRight(30) + SurfaceArea.ToString("N2").PadRight(10);
         }
     }
 }
