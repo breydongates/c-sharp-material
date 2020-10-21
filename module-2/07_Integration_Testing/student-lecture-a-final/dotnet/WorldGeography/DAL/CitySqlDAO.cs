@@ -21,32 +21,35 @@ namespace WorldGeography.DAL
             connectionString = databaseconnectionString;
         }
 
-        public int AddCity(City city)
+        public void AddCity(City city)
         {
-            int result = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO city VALUES (@name, @countrycode, @district, @population);  " +
-                       "SELECT SCOPE_IDENTITY();", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO city VALUES (@name, @countrycode, @district, @population);", conn);
                     cmd.Parameters.AddWithValue("@name", city.Name);
                     cmd.Parameters.AddWithValue("@countrycode", city.CountryCode);
                     cmd.Parameters.AddWithValue("@district", city.District);
                     cmd.Parameters.AddWithValue("@population", city.Population);
 
-                    result = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.ExecuteNonQuery();
 
+                    // Now print the new city id.
+                    cmd = new SqlCommand("SELECT MAX(id) FROM city;", conn);
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    Console.WriteLine($"The new city id is {id}");
                 }
             }
             catch (SqlException ex)
             {
-                result = 0;
+                Console.WriteLine("Error saving city.");
+                Console.WriteLine(ex.Message);
+                throw;
             }
-
-            return result;
         }
 
         public IList<City> GetCitiesByCountryCode(string countryCode)
@@ -59,19 +62,9 @@ namespace WorldGeography.DAL
                 {
                     conn.Open();
                     // column    // param name  
-
-
-                    //good
-                    string sql_command = "SELECT * FROM city WHERE countryCode = @countryCode;";
-                    SqlCommand cmd = new SqlCommand(sql_command, conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM city WHERE countryCode = @countryCode;", conn);
+                    // param name    // param value
                     cmd.Parameters.AddWithValue("@countryCode", countryCode);
-
-
-                    ////bad
-                    //string sql_command = "SELECT * FROM city WHERE countryCode = '" + countryCode + "';";
-                    //SqlCommand cmd = new SqlCommand(sql_command, conn);
-
-
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -84,7 +77,9 @@ namespace WorldGeography.DAL
             }
             catch (SqlException ex)
             {
-                cities = new List<City>();
+                Console.WriteLine("An error occurred reading cities by country.");
+                Console.WriteLine(ex.Message);
+                throw;
             }
 
             return cities;

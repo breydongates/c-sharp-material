@@ -38,8 +38,7 @@ namespace DataSecurity.Cli
         {
             // Get the username for the logged in user unless LoggedInUser
             // is null, or the Username is null
-            string name = LoggedInUser?.Username ??
-                "Unauthenticated User";
+            string name = LoggedInUser?.Username ?? "Unauthenticated User";
 
             Console.WriteLine($"Welcome {name}!");
             Console.Write("What would you like to do today? ");
