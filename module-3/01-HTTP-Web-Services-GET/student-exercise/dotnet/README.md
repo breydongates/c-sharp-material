@@ -25,7 +25,7 @@ There's a class provided in `/src/Data/Auction.cs` that represents the data mode
 
 ### Provided Code
 
-In `Program.cs`, you'll find two methods that print information to the console:
+In `UserInterface.cs`, you'll find two methods that print information to the console:
 
 - `PrintAuctions()`: Prints a list of auctions
 - `PrintAuction()`: Prints a single auction
