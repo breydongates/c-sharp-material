@@ -62,14 +62,14 @@ namespace WorldGeography.DAL
 
 
                     //good
-                    //string sql_command = "SELECT * FROM city WHERE countryCode = @countryCode;";
-                    //SqlCommand cmd = new SqlCommand(sql_command, conn);
-                    //cmd.Parameters.AddWithValue("@countryCode", countryCode);
+                    string sql_command = "SELECT * FROM city WHERE countryCode = @countryCode;";
+                    SqlCommand cmd = new SqlCommand(sql_command, conn);
+                    cmd.Parameters.AddWithValue("@countryCode", countryCode);
 
 
                     ////bad
-                    string sql_command = "SELECT * FROM city WHERE countryCode = '" + countryCode + "';";
-                    SqlCommand cmd = new SqlCommand(sql_command, conn);
+                    //string sql_command = "SELECT * FROM city WHERE countryCode = '" + countryCode + "';";
+                    //SqlCommand cmd = new SqlCommand(sql_command, conn);
 
 
 

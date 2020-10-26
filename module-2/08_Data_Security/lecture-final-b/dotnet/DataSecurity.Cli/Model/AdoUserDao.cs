@@ -76,7 +76,7 @@ namespace DataSecurity.Cli.Model
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                byte[] salt = _passwordHasher.GenerateRandomSalt();
+                byte[] salt = _passwordHasher.GenerateRandomSalt(); //salt generates random numbers, so the odds of password and salt combo is highly unlikely
                 string hashedPassword = _passwordHasher.ComputeHash(password, salt);
 
                 connection.Open();

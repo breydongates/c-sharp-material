@@ -36,34 +36,66 @@ namespace WordGeographyTest
                         "SELECT count(*) FROM city;", conn);
 
                     countBefore = (int)command.ExecuteScalar();
+                }
 
+                CitySqlDAO dao = new CitySqlDAO(connectionString);
+                City city = new City();
+                city.Name = "Johntown";
+                city.CountryCode = "GBR";
+                city.Population = 4;
+                city.District = "England";
 
-                    CitySqlDAO dao = new CitySqlDAO(connectionString);
-                    City city = new City();
-                    city.Name = "Johntown";
-                    city.CountryCode = "GBR";
-                    city.Population = 4;
-                    city.District = "England";
+                //Act
+                dao.AddCity(city);
 
-                    //Act
-                    dao.AddCity(city);
-
-
-                    command = new SqlCommand(
-                        "SELECT count(*) FROM city;", conn);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand(
+                         "SELECT count(*) FROM city;", conn);
 
                     countAfter = (int)command.ExecuteScalar();
 
-
-                    //Assert
-                    Assert.AreEqual(countBefore + 1, countAfter);
                 }
+                //Assert
+                Assert.AreEqual(countBefore + 1, countAfter);
+
             }
             finally
             {
                 transaction.Dispose();
             }
         }
+        [TestMethod]
+        public void  GetCitiesByCountryCodeTest()
+        {
+            transaction = new TransactionScope();
+            try
+            {
+                //ARRANGE
+                // create a country 
+                //SqlConnection
+                //SqlCommand
+                //ExecuteNonQuery since its an insert
 
+                //create a city
+                //SqlConnection
+                //SqlCommand
+                //ExecuteNonQuery since its an insert
+
+                //ACT
+                //create dao for CitySqlDAO
+                //call the method i'm testing GetCitiesByCountryCode on the dao
+
+                //ASSERT
+                //check that the city created is in the result of the GetCitiesByCountryCode
+            }
+            finally
+            {
+
+                transaction.Dispose();
+            }
+
+        }
     }
 }
