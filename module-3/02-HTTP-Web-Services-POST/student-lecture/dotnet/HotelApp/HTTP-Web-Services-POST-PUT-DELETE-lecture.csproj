@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>HTTP_Web_Services_POST_PUT_DELETE_lecture</RootNamespace>
   </PropertyGroup>
 
