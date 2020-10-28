@@ -9,17 +9,17 @@ namespace HotelReservations.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private static IHotelDao hotelDao;
-        private static IReservationDao reservationDao;
+        private readonly IHotelDao hotelDao;
+        private readonly IReservationDao reservationDao;
 
-        public HotelsController(IHotelDao _hotelDao, IReservationDao _reservationDao)
+        public HotelsController(IHotelDao hotelDao, IReservationDao reservationDao)
         {
-            hotelDao = _hotelDao;
-            reservationDao = _reservationDao;
+            this.hotelDao = hotelDao;
+            this.reservationDao = reservationDao;
         }
 
         [HttpGet("hotels")]
-        public List<Hotel> ListHotels()
+        public ActionResult<List<Hotel>> ListHotels()
         {
             return hotelDao.List();
         }
@@ -35,16 +35,17 @@ namespace HotelReservations.Controllers
             }
             else
             {
-                return NotFound();
+                return null;
             }
         }
 
         [HttpGet("hotels/filter")]
-        public List<Hotel> FilterByStateAndCity(string state, string city)
+        public ActionResult<List<Hotel>> FilterByStateAndCity(string state, string city)
         {
             List<Hotel> filteredHotels = new List<Hotel>();
 
-            List<Hotel> hotels = ListHotels();
+            List<Hotel> hotels = this.hotelDao.List();
+
             // return hotels that match state
             foreach (Hotel hotel in hotels)
             {
@@ -68,7 +69,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("reservations")]
-        public List<Reservation> ListReservations()
+        public ActionResult<List<Reservation>> ListReservations()
         {
             return reservationDao.List();
         }
@@ -84,7 +85,7 @@ namespace HotelReservations.Controllers
             }
             else
             {
-                return NotFound();
+                return null;
             }
         }
 
@@ -94,17 +95,17 @@ namespace HotelReservations.Controllers
             Hotel hotel = hotelDao.Get(hotelId);
             if (hotel == null)
             {
-                return NotFound("Hotel Id is invalid");
+                return null;
             }
+
             return reservationDao.FindByHotel(hotelId);
         }
 
-        [HttpPost("reservations")]
-        public ActionResult<Reservation> AddReservation(Reservation reservation)
-        {
-            Reservation added = reservationDao.Create(reservation);
-            return Created($"/reservations/{added.Id}", added);
-        }
+        // Handle creating a reservation on /reservations POST
+
+        // Handle updating a reservation on /reservations/{id} PUT
+
+        // Handle deleting a reservation on /reservations/{id} DELETE
 
     }
 }
