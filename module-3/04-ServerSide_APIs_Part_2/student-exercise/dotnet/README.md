@@ -20,9 +20,13 @@ The `AuctionApp.Tests` project contains the `AuctionsControllerTest` class. It c
 
 Feel free to run the server and test the application in the browser, or in Postman. However, your focus should be on making sure the tests pass.
 
-## Step Two: Modify the `Create()` method
+## Step Two: Add a `Create()` method
 
-First, work on the `Create()` method in `AuctionsController.cs`. Instead of returning `dao.Create(auction);`, call the method and store the return value in a variable. When a new auction has been created, you’ll need to send a status code of `201 Created` back to the client. Remember that you need to send the location of the new resource and the resource itself back with that request.
+Add a new `Create()` method in `AuctionsController.cs` that takes in an `Auction` and passes the auction to the DAO's `Create` method. 
+
+Instead of returning the result of `dao.Create(auction);`, call the method and store the return value in a variable. 
+
+When a new auction has been created, you’ll need to send a status code of `201 Created` back to the client. Remember that you need to send the location of the new resource and the resource itself back with that request.
 
 After you complete this step, the `CreateAuction_ExpectCreated` test passes.
 
