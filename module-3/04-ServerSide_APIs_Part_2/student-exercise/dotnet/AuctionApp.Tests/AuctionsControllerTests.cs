@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace AuctionApp.Tests
 {
@@ -25,9 +26,9 @@ namespace AuctionApp.Tests
         [TestMethod]
         public async Task CreateAuction_ExpectCreated()
         {
-            Auction input = new Auction() { Id = null, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
+            Auction input = new Auction() { Id = null, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 219.50 };
 
-            var response = await _client.PostAsJsonAsync("auctions", input);
+            var response = await _client.PostAsync("auctions", BuildJsonContent(input));
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Auction content = JsonConvert.DeserializeObject<Auction>(responseContent);
@@ -37,23 +38,28 @@ namespace AuctionApp.Tests
             Assert.IsNotNull(content);
         }
 
+        private static StringContent BuildJsonContent(Auction input)
+        {
+            return new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
+        }
+
         [TestMethod]
         public async Task CreateAuction_ExpectBadRequest()
         {
             Auction blankTitle = new Auction() { Id = null, Title = "", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
-            var responseTitle = await _client.PostAsJsonAsync("auctions", blankTitle);
+            var responseTitle = await _client.PostAsync("auctions", BuildJsonContent(blankTitle));
             Assert.IsTrue(responseTitle.StatusCode == System.Net.HttpStatusCode.BadRequest);
 
             Auction blankDescr = new Auction() { Id = null, Title = "Dragon Plush", Description = "", User = "Bernice", CurrentBid = 19.50 };
-            var responseDescr = await _client.PostAsJsonAsync("auctions", blankDescr);
+            var responseDescr = await _client.PostAsync("auctions", BuildJsonContent(blankDescr));
             Assert.IsTrue(responseDescr.StatusCode == System.Net.HttpStatusCode.BadRequest);
 
             Auction blankUser = new Auction() { Id = null, Title = "Dragon Plush", Description = "Not a real dragon", User = "", CurrentBid = 19.50 };
-            var responseUser = await _client.PostAsJsonAsync("auctions", blankUser);
+            var responseUser = await _client.PostAsync("auctions", BuildJsonContent(blankUser));
             Assert.IsTrue(responseUser.StatusCode == System.Net.HttpStatusCode.BadRequest);
 
             Auction tooLowPrice = new Auction() { Id = null, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 0.0 };
-            var responsePrice = await _client.PostAsJsonAsync("auctions", tooLowPrice);
+            var responsePrice = await _client.PostAsync("auctions", BuildJsonContent(tooLowPrice));
             Assert.IsTrue(responsePrice.StatusCode == System.Net.HttpStatusCode.BadRequest);
         }
 
@@ -62,7 +68,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 2, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
 
-            var response = await _client.PutAsJsonAsync("auctions/2", input);
+            var response = await _client.PostAsync("auctions/2", BuildJsonContent(input));
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Auction content = JsonConvert.DeserializeObject<Auction>(responseContent);
@@ -77,7 +83,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 2, Title = "", Description = "", User = "", CurrentBid = 0 };
 
-            var response = await _client.PutAsJsonAsync("auctions/2", input);
+            var response = await _client.PostAsync("auctions/2", BuildJsonContent(input));
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Auction content = JsonConvert.DeserializeObject<Auction>(responseContent);
@@ -90,7 +96,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 23, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
 
-            var response = await _client.PutAsJsonAsync("auctions/23", input);
+            var response = await _client.PostAsync("auctions/23", BuildJsonContent(input));
 
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotFound);
         }
