@@ -9,13 +9,13 @@ namespace HotelReservations.Models
 
         public int HotelID { get; set; }
 
-        public string FullName { get; set; }
+        public string FullName { get; set; } // This really should be required and have length restrictions
 
-        public string CheckinDate { get; set; }
+        public string CheckinDate { get; set; } // This probably should be required
 
-        public string CheckoutDate { get; set; }
+        public string CheckoutDate { get; set; } // This probably should be required
 
-        public int Guests { get; set; }
+        public int Guests { get; set; } // It'd be nice to restrict this to a range
 
         public Reservation(int? id, int hotelId, string fullName, string checkinDate, string checkoutDate, int guests)
         {
