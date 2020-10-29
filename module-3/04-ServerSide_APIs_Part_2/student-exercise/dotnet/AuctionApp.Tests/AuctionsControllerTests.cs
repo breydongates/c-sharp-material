@@ -68,7 +68,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 2, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
 
-            var response = await _client.PostAsync("auctions/2", BuildJsonContent(input));
+            var response = await _client.PutAsync("auctions/2", BuildJsonContent(input));
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Auction content = JsonConvert.DeserializeObject<Auction>(responseContent);
@@ -83,7 +83,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 2, Title = "", Description = "", User = "", CurrentBid = 0 };
 
-            var response = await _client.PostAsync("auctions/2", BuildJsonContent(input));
+            var response = await _client.PutAsync("auctions/2", BuildJsonContent(input));
 
             string responseContent = await response.Content.ReadAsStringAsync();
             Auction content = JsonConvert.DeserializeObject<Auction>(responseContent);
@@ -96,7 +96,7 @@ namespace AuctionApp.Tests
         {
             Auction input = new Auction() { Id = 23, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
 
-            var response = await _client.PostAsync("auctions/23", BuildJsonContent(input));
+            var response = await _client.PutAsync("auctions/23", BuildJsonContent(input));
 
             Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotFound);
         }
