@@ -32,6 +32,34 @@ namespace HotelReservations.Dao
             return Hotels;
         }
 
+        public List<Hotel> GetHotelsByState(string state)
+        {
+            List<Hotel> filteredHotels = new List<Hotel>();
+
+            foreach (Hotel hotel in Hotels)
+            {
+                if(hotel.Address.State.ToLower() == state.ToLower())
+                {
+                    filteredHotels.Add(hotel);
+                }
+            }
+            return filteredHotels;
+        }
+
+        public List<Hotel> GetHotelsByCity(string city)
+        {
+            List<Hotel> filteredHotels = new List<Hotel>();
+
+            foreach (Hotel hotel in Hotels)
+            {
+                if (hotel.Address.City.ToLower() == city.ToLower())
+                {
+                    filteredHotels.Add(hotel);
+                }
+            }
+            return filteredHotels;
+        }
+
         public Hotel Get(int id)
         {
             foreach (var hotel in Hotels)

@@ -7,6 +7,11 @@ namespace HotelReservations.Dao
     {
         List<Hotel> List();
 
+        List<Hotel> GetHotelsByCity(string city);
+
+        List<Hotel> GetHotelsByState(string state);
         Hotel Get(int id);
+
+
     }
 }
