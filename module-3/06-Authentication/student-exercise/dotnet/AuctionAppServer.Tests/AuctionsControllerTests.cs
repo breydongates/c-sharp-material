@@ -12,6 +12,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace AuctionApp.Tests
 {
@@ -38,14 +39,14 @@ namespace AuctionApp.Tests
             Auction input = new Auction() { Id = null, Title = "Dragon Plush", Description = "Not a real dragon", User = "Bernice", CurrentBid = 19.50 };
 
             var responseGetAuction1 = await _client.GetAsync("auctions/1");
-            var responsePostAuction = await _client.PostAsJsonAsync("auctions", input);
-            var responsePutAuction = await _client.PutAsJsonAsync("auctions/1", input);
+            var responsePostAuction = await _client.PostAsync("auctions", BuildJsonContent(input));
+            var responsePutAuction = await _client.PostAsync("auctions/1", BuildJsonContent(input));
             var responseDeleteAuction = await _client.DeleteAsync("auctions/1");
 
-            Assert.IsTrue(responseGetAuction1.StatusCode == System.Net.HttpStatusCode.Unauthorized);
-            Assert.IsTrue(responsePostAuction.StatusCode == System.Net.HttpStatusCode.Unauthorized);
-            Assert.IsTrue(responsePutAuction.StatusCode == System.Net.HttpStatusCode.Unauthorized);
-            Assert.IsTrue(responseDeleteAuction.StatusCode == System.Net.HttpStatusCode.Unauthorized);
+            Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responseGetAuction1.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responsePostAuction.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responsePutAuction.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responseDeleteAuction.StatusCode);
 
             var attrs = System.Attribute.GetCustomAttributes(typeof(AuctionsController)).ToList();
             Assert.IsTrue(attrs.Any(a => a is AuthorizeAttribute), "Authorize attribute missing from controller class.");
@@ -57,8 +58,8 @@ namespace AuctionApp.Tests
             var responseGetAuctions = await _client.GetAsync("auctions");
             var responseGetAuction1 = await _client.GetAsync("auctions/1");
 
-            Assert.IsTrue(responseGetAuctions.StatusCode == System.Net.HttpStatusCode.OK);
-            Assert.IsTrue(responseGetAuction1.StatusCode == System.Net.HttpStatusCode.Unauthorized);
+            Assert.AreEqual(System.Net.HttpStatusCode.OK, responseGetAuctions.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responseGetAuction1.StatusCode);
         }
 
         [TestMethod]
@@ -83,7 +84,7 @@ namespace AuctionApp.Tests
             requestAdmin.Headers.Authorization = new AuthenticationHeaderValue("Bearer", adminToken);
             var responseAdmin = await _client.SendAsync(requestAdmin);
 
-            Assert.IsTrue(responseViewer.StatusCode == System.Net.HttpStatusCode.Forbidden);
+            Assert.AreEqual(System.Net.HttpStatusCode.Forbidden, responseViewer.StatusCode);
             Assert.IsTrue(responseCreator.IsSuccessStatusCode);
             Assert.IsTrue(responseAdmin.IsSuccessStatusCode);
         }
@@ -110,7 +111,7 @@ namespace AuctionApp.Tests
             requestAdmin.Headers.Authorization = new AuthenticationHeaderValue("Bearer", adminToken);
             var responseAdmin = await _client.SendAsync(requestAdmin);
 
-            Assert.IsTrue(responseViewer.StatusCode == System.Net.HttpStatusCode.Forbidden);
+            Assert.AreEqual(System.Net.HttpStatusCode.Forbidden, responseViewer.StatusCode);
             Assert.IsTrue(responseCreator.IsSuccessStatusCode);
             Assert.IsTrue(responseAdmin.IsSuccessStatusCode);
         }
@@ -134,8 +135,8 @@ namespace AuctionApp.Tests
             requestAdmin.Headers.Authorization = new AuthenticationHeaderValue("Bearer", adminToken);
             var responseAdmin = await _client.SendAsync(requestAdmin);
 
-            Assert.IsTrue(responseViewer.StatusCode == System.Net.HttpStatusCode.Forbidden);
-            Assert.IsTrue(responseCreator.StatusCode == System.Net.HttpStatusCode.Forbidden);
+            Assert.AreEqual(System.Net.HttpStatusCode.Forbidden, responseViewer.StatusCode);
+            Assert.AreEqual(System.Net.HttpStatusCode.Forbidden, responseCreator.StatusCode);
             Assert.IsTrue(responseAdmin.IsSuccessStatusCode);
         }
 
@@ -161,32 +162,37 @@ namespace AuctionApp.Tests
             var responseAdmin = await _client.SendAsync(requestAdmin);
             string responseAdminContent = await responseAdmin.Content.ReadAsStringAsync();
 
-            Assert.IsTrue(responseViewerContent == "test");
-            Assert.IsTrue(responseCreatorContent == "johnny");
-            Assert.IsTrue(responseAdminContent == "admin");
+            Assert.AreEqual("test", responseViewerContent);
+            Assert.AreEqual("johnny", responseCreatorContent);
+            Assert.AreEqual("admin", responseAdminContent);
         }
 
 
         private async Task<string> GetViewerLogin()
         {
-            var viewerResponse = await _client.PostAsJsonAsync("login", new { username = "test", password = "test" });
+            var viewerResponse = await _client.PostAsync("login", BuildJsonContent(new { username = "test", password = "test" }));
             string viewerResponseContent = await viewerResponse.Content.ReadAsStringAsync();
             User viewer = JsonConvert.DeserializeObject<User>(viewerResponseContent);
             return viewer.Token;
         }
         private async Task<string> GetCreatorLogin()
         {
-            var creatorResponse = await _client.PostAsJsonAsync("login", new { username = "johnny", password = "test" });
+            var creatorResponse = await _client.PostAsync("login", BuildJsonContent(new { username = "johnny", password = "test" }));
             string creatorResponseContent = await creatorResponse.Content.ReadAsStringAsync();
             User creator = JsonConvert.DeserializeObject<User>(creatorResponseContent);
             return creator.Token;
         }
         private async Task<string> GetAdminLogin()
         {
-            var adminResponse = await _client.PostAsJsonAsync("login", new { username = "admin", password = "admin" });
+            var adminResponse = await _client.PostAsync("login", BuildJsonContent(new { username = "admin", password = "admin" }));
             string adminResponseContent = await adminResponse.Content.ReadAsStringAsync();
             User admin = JsonConvert.DeserializeObject<User>(adminResponseContent);
             return admin.Token;
+        }
+
+        private static StringContent BuildJsonContent(object input)
+        {
+            return new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
         }
     }
 }

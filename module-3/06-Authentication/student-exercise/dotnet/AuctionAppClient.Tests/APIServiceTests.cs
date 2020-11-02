@@ -48,7 +48,7 @@ namespace AuctionApp.Tests
             // Act
             string actual = apiService.ProcessErrorResponse(response);
 
-            Assert.AreEqual(actual, apiService.UNAUTHORIZED_MSG);
+            Assert.AreEqual(apiService.UNAUTHORIZED_MSG, actual);
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace AuctionApp.Tests
             // Act
             string actual = apiService.ProcessErrorResponse(response);
 
-            Assert.AreEqual(actual, apiService.FORBIDDEN_MSG);
+            Assert.AreEqual(apiService.FORBIDDEN_MSG, actual);
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace AuctionApp.Tests
             // Act
             string actual = apiService.ProcessErrorResponse(response);
 
-            Assert.AreEqual(actual, apiService.OTHER_4XX_MSG + "400");
+            Assert.AreEqual(apiService.OTHER_4XX_MSG + "400", actual);
         }
     }
 }
