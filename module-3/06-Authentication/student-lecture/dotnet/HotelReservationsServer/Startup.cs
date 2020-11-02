@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HotelReservations
@@ -24,7 +25,7 @@ namespace HotelReservations
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
 
             // Add CORS policy allowing any origin
             services.AddCors(options =>
@@ -56,9 +57,9 @@ namespace HotelReservations
             });
 
             // Dependency Injection configuration
-            services.AddSingleton<ITokenGenerator>(sp => new JwtGenerator(Configuration["JwtSecret"]));
-            services.AddSingleton<IPasswordHasher>(sp => new PasswordHasher());
-            services.AddSingleton<IUserDao>(sp => new UserDao());
+            services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
+            services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
+            services.AddTransient<IUserDao>(m => new UserDao());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,10 +76,13 @@ namespace HotelReservations
             }
 
             app.UseCors("CorsPolicy");
-            app.UseAuthentication();
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

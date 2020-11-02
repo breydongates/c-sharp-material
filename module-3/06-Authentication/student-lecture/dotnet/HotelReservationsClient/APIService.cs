@@ -1,17 +1,23 @@
-﻿using RestSharp;
+﻿using HotelReservationsClient.Data;
+using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 
 namespace HotelReservationsClient
 {
-    class APIService
+    public class APIService
     {
         private readonly string API_URL = "";
         private readonly RestClient client = new RestClient();
-        private API_User user = new API_User();
 
-        public bool LoggedIn { get { return !string.IsNullOrWhiteSpace(user.Token); } }
+        public bool LoggedIn 
+        { 
+            get 
+            { 
+                return client.Authenticator != null; 
+            } 
+        }
 
         public APIService(string api_url)
         {
@@ -129,7 +135,17 @@ namespace HotelReservationsClient
             }
             else if (!response.IsSuccessful)
             {
-                Console.WriteLine("Error occurred - received non-success response: " + (int)response.StatusCode);
+                switch (response.StatusCode)
+                {
+                    // TODO: Handle 401 Unauthorized status code
+
+                    // TODO: Handle 403 Forbidden status code
+
+                    default:
+                        Console.WriteLine("Error occurred - received non-success response: " + (int)response.StatusCode);
+                        break;
+                }
+
             }
         }
 
@@ -138,7 +154,7 @@ namespace HotelReservationsClient
             var credentials = new { username = submittedName, password = submittedPass }; //this gets converted to JSON by RestSharp
             RestRequest request = new RestRequest(API_URL + "login");
             request.AddJsonBody(credentials);
-            IRestResponse<API_User> response = client.Post<API_User>(request);
+            IRestResponse<LoginResult> response = client.Post<LoginResult>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
@@ -159,7 +175,7 @@ namespace HotelReservationsClient
             }
             else
             {
-                user.Token = response.Data.Token;
+                // TODO: Set the response's token into the Rest Client for subsequent requests
 
                 return true;
             }
@@ -167,8 +183,7 @@ namespace HotelReservationsClient
 
         public void Logout()
         {
-            user = new API_User();
-            client.Authenticator = null;
+            // TODO: Clear out any authentication from the Rest client
         }
     }
 }

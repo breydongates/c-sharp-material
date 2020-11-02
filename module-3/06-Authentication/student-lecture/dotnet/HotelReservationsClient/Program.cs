@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace HotelReservationsClient
 {
-    class Program
+    public class Program
     {
+        // Note: this class is almost an example of what not to do. It relies on static far too much, 
+        // including relying on static class variables, which is almost always bad
+
         private static readonly APIService apiService = new APIService("https://localhost:44322/");
         private static readonly ConsoleService console = new ConsoleService();
 

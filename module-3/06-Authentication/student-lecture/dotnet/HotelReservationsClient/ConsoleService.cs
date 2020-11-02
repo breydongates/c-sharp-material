@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HotelReservationsClient
 {
-    class ConsoleService
+    public class ConsoleService
     {
 
         //Print methods

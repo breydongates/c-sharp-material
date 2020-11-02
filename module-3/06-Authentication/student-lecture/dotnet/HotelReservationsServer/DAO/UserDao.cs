@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using HotelReservations.Models;
@@ -8,17 +7,13 @@ namespace HotelReservations.DAO
 {
     public class UserDao : IUserDao
     {
-        private readonly List<User> users = new List<User>();
+        private static List<User> _users = new List<User>();
 
         public UserDao()
         {
-            if (users.Count != 0)
+            if (_users.Count == 0)
             {
-                return;
-            }
-
-            using (StreamReader dataInput = new StreamReader("./users.txt"))
-            {
+                StreamReader dataInput = new StreamReader("./users.txt");
                 while (!dataInput.EndOfStream)
                 {
                     string dataLine = dataInput.ReadLine();
@@ -37,20 +32,22 @@ namespace HotelReservations.DAO
                                 Salt = lineUser[5],
                                 Role = lineUser[6]
                             };
-                            users.Add(newUser);
+                            _users.Add(newUser);
                         }
                     }
-                    catch (FormatException)
+                    catch
                     {
                         //skip user, bad input
                     }
-                }
-            }
+                } //while (!dataInput.EndOfStream)
+            } //if (_users == null || _users.Count == 0)
         }
 
         public User GetUser(string username)
         {
-            return users.SingleOrDefault(x => x.Username == username);
+            var user = _users.SingleOrDefault(x => x.Username == username);
+
+            return user;
         }
     }
 }

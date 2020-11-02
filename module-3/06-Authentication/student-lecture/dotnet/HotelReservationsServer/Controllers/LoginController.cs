@@ -2,6 +2,7 @@
 using HotelReservations.Security;
 using HotelReservations.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelReservations.Controllers
 {
@@ -23,26 +24,48 @@ namespace HotelReservations.Controllers
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
-            // Default to bad username/password message
-            IActionResult result = BadRequest(new { message = "Username or password is incorrect" });
-
             // Get the user by username
             User user = userDao.GetUser(userParam.Username);
 
-            // If we found a user and the password hash matches
-            if (user != null && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
+            // If no user was found or it was a password mismatch, return a generic bad request.
+            if (user == null || !passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
             {
-                // Create an authentication token
-                string token = tokenGenerator.GenerateToken(user.Id, user.Username, user.Role);
-
-                // Create a ReturnUser object to return to the client
-                ReturnUser retUser = new ReturnUser() { Id = user.Id, Username = user.Username, Role = user.Role, Token = token };
-
-                // Switch to 200 OK
-                result = Ok(retUser);
+                return BadRequest(new { message = "Username or password is incorrect" });
             }
 
-            return result;
+            // Create an authentication token
+            string token = tokenGenerator.GenerateToken(user.Id, user.Username, user.Role);
+
+            // Create a ReturnUser object to return to the client
+            ReturnUser retUser = new ReturnUser() 
+            { 
+                Id = user.Id, 
+                Username = user.Username, 
+                Role = user.Role, 
+                Token = token 
+            };
+
+            return Ok(retUser);
         }
+
+        [HttpGet]
+        public ActionResult GetUserInformation()
+        {
+            return Ok(User.Identity.Name); // TODO: Take a look at the user's information via the debugger
+        }
+
+        [HttpGet("test/auth")]
+        public ActionResult AuthorizedOnly()
+        {
+            return Ok(); // TODO: Restrict this to only authenticated users
+        }
+
+
+        [HttpGet("test/admin")]
+        public ActionResult AdminOnly()
+        {
+            return Ok(); // TODO: Restrict this to only admin users
+        }
+
     }
 }
