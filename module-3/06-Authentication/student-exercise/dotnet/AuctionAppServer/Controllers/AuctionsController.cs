@@ -92,7 +92,7 @@ namespace AuctionApp.Controllers
         [HttpGet("whoami")]
         public ActionResult WhoAmI()
         {
-            return Ok("");
+            return Ok("Batman"); // TODO: Probably not, unless you teach .NET & JavaScript
         }
     }
 }

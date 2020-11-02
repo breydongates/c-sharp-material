@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using AuctionAppClient.Data;
+using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
@@ -149,6 +150,8 @@ namespace AuctionApp
             }
             else if (!response.IsSuccessful)
             {
+                // TODO: Handle unauthorized and forbidden responses by using the constants defined on this class
+
                 return OTHER_4XX_MSG + (int)response.StatusCode;
             }
             return "";
@@ -156,9 +159,13 @@ namespace AuctionApp
 
         public API_User Login(string submittedName, string submittedPass)
         {
+            LoginRequest loginRequest = new LoginRequest() 
+            { 
+                Username = submittedName, 
+                Password = submittedPass 
+            };
 
-
-            IRestResponse<API_User> response = null;
+            IRestResponse<API_User> response = null; // TODO: Make a call to log in
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
@@ -180,6 +187,8 @@ namespace AuctionApp
             else
             {
                 user.Token = response.Data.Token;
+
+                // TODO: Store the JWT in the client so subsequent requests can authenticate
 
                 return response.Data;
             }

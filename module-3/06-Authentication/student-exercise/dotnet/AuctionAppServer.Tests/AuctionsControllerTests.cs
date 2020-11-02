@@ -40,7 +40,7 @@ namespace AuctionApp.Tests
 
             var responseGetAuction1 = await _client.GetAsync("auctions/1");
             var responsePostAuction = await _client.PostAsync("auctions", BuildJsonContent(input));
-            var responsePutAuction = await _client.PostAsync("auctions/1", BuildJsonContent(input));
+            var responsePutAuction = await _client.PutAsync("auctions/1", BuildJsonContent(input));
             var responseDeleteAuction = await _client.DeleteAsync("auctions/1");
 
             Assert.AreEqual(System.Net.HttpStatusCode.Unauthorized, responseGetAuction1.StatusCode);
