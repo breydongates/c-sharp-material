@@ -1,4 +1,4 @@
-﻿namespace TenmoServer.Models
+﻿namespace SallyServer.Models
 {
     /// <summary>
     /// Model to accept login parameters

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TenmoServer.DAO;
-using TenmoServer.Models;
-using TenmoServer.Security;
+using SallyServer.DAO;
+using SallyServer.Models;
+using SallyServer.Security;
 
-namespace TenmoServer.Controllers
+namespace SallyServer.Controllers
 {
     [Route("[controller]")]
     [ApiController]

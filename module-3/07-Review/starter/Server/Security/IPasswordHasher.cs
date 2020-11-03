@@ -1,6 +1,6 @@
-﻿using TenmoServer.Security.Models;
+﻿using SallyServer.Security.Models;
 
-namespace TenmoServer.Security
+namespace SallyServer.Security
 {
     /// <summary>
     /// Represents a password hasher.

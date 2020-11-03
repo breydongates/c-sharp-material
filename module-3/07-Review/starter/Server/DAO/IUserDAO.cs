@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using TenmoServer.Models;
+﻿using SallyServer.Models;
+using System.Collections.Generic;
 
-namespace TenmoServer.DAO
+namespace SallyServer.DAO
 {
     public interface IUserDAO
     {

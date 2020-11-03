@@ -1,8 +1,8 @@
-﻿using TenmoServer.Security.Models;
-using System;
+﻿using System;
 using System.Security.Cryptography;
+using SallyServer.Security.Models;
 
-namespace TenmoServer.Security
+namespace SallyServer.Security
 {
     /// <summary>
     /// The hash provider provides functionality to hash a plain text password and validate
@@ -52,7 +52,7 @@ namespace TenmoServer.Security
             //Compare the hashed password values
             string newHashedPassword = Convert.ToBase64String(hash);
 
-            return (existingHashedPassword == newHashedPassword);
+            return existingHashedPassword == newHashedPassword;
         }
     }
 }

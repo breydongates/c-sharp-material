@@ -1,4 +1,4 @@
-﻿namespace TenmoServer.Models
+﻿namespace SallyServer.Models
 {
     public class User
     {

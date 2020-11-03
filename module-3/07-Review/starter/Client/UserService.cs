@@ -1,6 +1,6 @@
 ﻿using SallyClient.Data;
 
-namespace TenmoClient
+namespace SallyClient
 {
     public static class UserService
     {
@@ -16,9 +16,12 @@ namespace TenmoClient
             return user.UserId;
         }
 
-        public static bool IsLoggedIn()
+        public static bool IsLoggedIn
         {
-            return !string.IsNullOrWhiteSpace(user.Token);
+            get
+            {
+                return !string.IsNullOrWhiteSpace(user.Token);
+            }
         }
 
         public static string GetToken()

@@ -1,18 +1,17 @@
-﻿using System;
+﻿using SallyServer.Models;
+using SallyServer.Security;
+using SallyServer.Security.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using TenmoServer.Models;
-using TenmoServer.Security;
-using TenmoServer.Security.Models;
 
-namespace TenmoServer.DAO
+namespace SallyServer.DAO
 {
-    public class UserSqlDAO : IUserDAO
+    public class UserSqlDao : IUserDAO
     {
         private readonly string connectionString;
-        const decimal startingBalance = 1000;
 
-        public UserSqlDAO(string dbConnectionString)
+        public UserSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
         }
@@ -56,7 +55,6 @@ namespace TenmoServer.DAO
                         User u = GetUserFromReader(reader);
                         returnUsers.Add(u);
                     }
-
                 }
             }
 
@@ -80,11 +78,6 @@ namespace TenmoServer.DAO
 
                 cmd = new SqlCommand("SELECT @@IDENTITY", conn);
                 int userId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd = new SqlCommand("INSERT INTO accounts (user_id, balance) VALUES (@userid, @startBalance)", conn);
-                cmd.Parameters.AddWithValue("@userid", userId);
-                cmd.Parameters.AddWithValue("@startBalance", startingBalance);
-                cmd.ExecuteNonQuery();
             }
 
             return GetUser(username);

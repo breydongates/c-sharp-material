@@ -6,22 +6,37 @@ namespace SallyClient
     public class ConsoleService
     {
         /// <summary>
-        /// Prompts for transfer ID to view, approve, or reject
+        /// Prompts for a numeric return value
         /// </summary>
-        /// <param name="action">String to print in prompt. Expected values are "Approve" or "Reject" or "View"</param>
-        /// <returns>ID of transfers to view, approve, or reject</returns>
-        public int PromptForTransferID(string action)
+        /// <param name="action">String to print in prompt</param>
+        /// <returns>ID</returns>
+        public int PromptForNumber(string noun)
         {
             Console.WriteLine("");
-            Console.Write($"Please enter transfer ID to {action} (0 to cancel): ");
+            Console.Write($"Please enter {noun} (0 to cancel): ");
 
-            if (!int.TryParse(Console.ReadLine(), out int auctionId))
+            if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Invalid input. Only input a number.");
                 return 0;
             }
 
-            return auctionId;
+            return id;
+        }
+
+        public API_Question PromptForQuestion()
+        {
+            Console.WriteLine("What is your question's text?");
+            string text = Console.ReadLine();
+
+            Console.WriteLine("What is your question's answer?");
+            string answer = Console.ReadLine();
+
+            return new API_Question()
+            {
+                Text = text,
+                Answer = answer,
+            };
         }
 
         public LoginUser PromptForLogin()
