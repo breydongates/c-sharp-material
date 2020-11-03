@@ -151,12 +151,22 @@ namespace AuctionApp
             else if (!response.IsSuccessful)
             {
                 // TODO: Handle unauthorized and forbidden responses by using the constants defined on this class
+                if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return UNAUTHORIZED_MSG;
+                }
+
+                if(response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return FORBIDDEN_MSG;
+                }
 
                 return OTHER_4XX_MSG + (int)response.StatusCode;
             }
             return "";
         }
 
+        
         public API_User Login(string submittedName, string submittedPass)
         {
             LoginRequest loginRequest = new LoginRequest() 
@@ -164,8 +174,10 @@ namespace AuctionApp
                 Username = submittedName, 
                 Password = submittedPass 
             };
+            RestRequest request = new RestRequest(API_BASE_URL + "/login");
+            request.AddJsonBody(loginRequest);
 
-            IRestResponse<API_User> response = null; // TODO: Make a call to log in
+            IRestResponse<API_User> response = this.client.Post<API_User>(request); // TODO: Make a call to log in
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
@@ -189,6 +201,7 @@ namespace AuctionApp
                 user.Token = response.Data.Token;
 
                 // TODO: Store the JWT in the client so subsequent requests can authenticate
+                client.Authenticator = new JwtAuthenticator(user.Token);
 
                 return response.Data;
             }

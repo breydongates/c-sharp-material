@@ -55,6 +55,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("test/auth")]
+        [Authorize]
         public ActionResult AuthorizedOnly()
         {
             return Ok(); // TODO: Restrict this to only authenticated users
@@ -62,6 +63,7 @@ namespace HotelReservations.Controllers
 
 
         [HttpGet("test/admin")]
+        [Authorize(Roles = "admin, zeus, cat")]
         public ActionResult AdminOnly()
         {
             return Ok(); // TODO: Restrict this to only admin users

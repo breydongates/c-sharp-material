@@ -8,6 +8,7 @@ namespace HotelReservations.Controllers
 {
     [Route("/")]
     [ApiController]
+    [Authorize]
     public class HotelsController : ControllerBase
     {
         private static IHotelDao _hotelDao;
@@ -27,6 +28,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("hotels")]
+        [AllowAnonymous] //things the public can access, getting hotels, cant get reservations
         public List<Hotel> ListHotels()
         {
             return _hotelDao.List();
