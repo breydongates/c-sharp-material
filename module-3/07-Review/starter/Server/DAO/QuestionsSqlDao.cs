@@ -72,7 +72,7 @@ namespace SallyServer.DAO
                 cmd.Parameters.AddWithValue("@answer", question.Answer);
                 cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("SELECT @@IDENTITY", conn);
+                cmd = new SqlCommand("SELECT @@IDENTITY", conn); // or SELECT SCOPE_IDENTITY()
                 question.Id = Convert.ToInt32(cmd.ExecuteScalar());
             }
 

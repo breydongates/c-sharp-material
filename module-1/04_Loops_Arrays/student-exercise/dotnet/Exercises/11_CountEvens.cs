@@ -17,14 +17,17 @@ namespace Exercises
          */
         public int CountEvens(int[] nums)
         {
-            int even = 0;
+            int evenCount  = 0;
             for (int i = 0; i < nums.Length; i++)
-            { if (nums[i] % 2 == 0)
-                    return even++;
-                    
-                        } 
-            
-             return 0;
+            {
+                if (nums[i] / 2 == 0)
+                {
+                    evenCount++;
+                }
+
+            }
+
+            return evenCount;
         }
 
     }

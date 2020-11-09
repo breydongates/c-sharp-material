@@ -26,7 +26,12 @@ namespace SallyClient
 
         public static string GetToken()
         {
-            return user?.Token ?? string.Empty;
+            if (user == null || user.Token == null)
+            {
+                return string.Empty;
+            }
+            return user.Token;
+           // return user?.Token ?? string.Empty; same thing as above
         }
     }
 }

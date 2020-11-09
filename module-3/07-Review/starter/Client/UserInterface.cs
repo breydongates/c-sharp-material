@@ -98,6 +98,7 @@ namespace SallyClient
                         case 5: // Log out
                             Console.WriteLine();
                             UserService.SetLogin(new API_User()); //wipe out previous login info
+                            this.questionService.UpdateToken(null);
                             return;
                         case 0:
                             Console.WriteLine("Goodbye!");
@@ -175,6 +176,7 @@ namespace SallyClient
                 if (user != null)
                 {
                     UserService.SetLogin(user);
+                    this.questionService.UpdateToken(user.Token);
                 }
             }
         }

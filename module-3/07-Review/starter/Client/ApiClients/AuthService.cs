@@ -65,7 +65,7 @@ namespace SallyClient.ApiClients
             }
             else
             {
-                client.Authenticator = new JwtAuthenticator(response.Data.Token);
+                client.Authenticator = new JwtAuthenticator(response.Data.Token); //this puts it into header once request is made
                 return response.Data;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using RestSharp.Authenticators;
 using SallyClient.Data;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,24 @@ namespace SallyClient.ApiClients
 
             this.client = new RestClient();
         }
+        public void UpdateToken(string tokenJwt)
+        {
+            if (string.IsNullOrEmpty(tokenJwt))
+            {
+                this.client.Authenticator = null;
+            }
+            else
+            {
+            this.client.Authenticator = new JwtAuthenticator(tokenJwt);
+                
+            }
+        }
 
         public List<API_Question> GetAllQuestions()
         {
             RestRequest request = new RestRequest(BASE_URL);
 
-            var response = client.Get<List<API_Question>>(request);
+            var response = client.Get<List<API_Question>>(request); //var says the same thng as IRestResponse<List<API_Question>> response = client.Get
 
             if (response.IsSuccessful && response.ResponseStatus == ResponseStatus.Completed)
             {
