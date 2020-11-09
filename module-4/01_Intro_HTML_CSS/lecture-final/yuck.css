@@ -1,0 +1,68 @@
+html {
+    background-color: black;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+p {
+    color: #11bbd1;
+}
+p {
+    color: #3a8f48;
+}
+
+img {
+    max-width: 250px;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+table {
+    background-color: gray;
+    padding: 10px;
+}
+
+tbody {
+    /*color: darkgrey;*/
+}
+
+#btnSubmit {
+    padding: 20px;
+    background-color: darkslateblue;
+    color: yellow;
+    text-decoration: underline;
+}
+
+thead th {
+    border-bottom: 5px dashed purple;
+    font-size: 24pt;
+}
+
+#freeLabel {
+    color: rgb(149, 14, 14);
+}
+
+.free {
+    color: greenyellow;
+    font-size: 18pt;
+}
+
+td {
+    color: white;
+    padding: 5px;
+    font-style: italic;
+    text-align: left;
+    font-weight: bold;
+    border-right: 10px solid royalblue;
+    /*
+    border-right-color: royalblue;
+    border-right-width: 10px;
+    border-right-style: solid;
+    */
+}
+
+th {
+    color: rgb(18, 90, 51);
+}
