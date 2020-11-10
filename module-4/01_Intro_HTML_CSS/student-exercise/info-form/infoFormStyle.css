@@ -1,0 +1,8 @@
+div{
+    background-color: rgb(179, 174, 174);
+    color:black;
+}
+#btnSubmit{
+    padding: 10px;
+    text-decoration: underline black;
+}

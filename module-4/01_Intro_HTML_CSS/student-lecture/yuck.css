@@ -1,0 +1,54 @@
+html{
+    background-color: salmon;
+    color: purple;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+p{
+    color: #5c556e;
+}
+p{
+    color: powderblue;
+}
+input {
+    margin-bottom: 20px;
+}
+thead th{
+    border-bottom: 5px groove yellowgreen;
+}
+table {
+    background-color: gray;
+    padding: 10px;
+}
+#freeLabel{
+    color: blueviolet;
+}
+img{
+    max-width: 250px;
+}
+
+#btnSubmit{
+    padding: 20px;
+    background-color: hotpink;
+    color: yellow;
+    text-decoration: underline;
+}
+
+.free{
+    color: greenyellow;
+    font-size: 18pt;
+}
+
+td{
+    padding: 5px;
+    font-style: italic;
+    text-align: left;
+    font-weight: bold;
+    border-right: cornflowerblue;
+    border-right-width: 10px;
+    border-right-style:groove;
+
+}
+th{
+    color: black;
+    font-size: x-large;
+}
