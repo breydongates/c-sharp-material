@@ -16,6 +16,10 @@ namespace Exercises
          */
         public bool DoubleX(string str)
         {
+            if(str.Contains("x"))
+            {
+                return true;
+            }
             return false;
         }
     }

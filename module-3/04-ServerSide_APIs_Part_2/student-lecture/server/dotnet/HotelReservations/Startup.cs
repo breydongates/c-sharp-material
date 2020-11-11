@@ -1,4 +1,5 @@
 ﻿using HotelReservations.Dao;
+using HotelReservations.DAO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,8 @@ namespace HotelReservations
             services.AddControllers();
 
             // Dependency Injection configuration
-            services.AddScoped<IHotelDao>(m => new HotelDao());
+            
+            services.AddScoped<IHotelDao>(m => new FakeHotelDAO());
             services.AddScoped<IReservationDao>(m => new ReservationDao());
         }
 

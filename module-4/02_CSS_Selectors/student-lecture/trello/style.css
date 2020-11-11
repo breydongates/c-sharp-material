@@ -18,31 +18,70 @@
 /* Part 1 - Sizing */
 
 /* Set everything to use border box box-sizing */
-/* Set the main background color to #858C90 */
-/* Set the height of the HTML element to take up 100% of the screen */
-/* Set the main font to be 16px Raleway or sans-serif if Raleway isn't available */
+*{
+    box-sizing: border-box;
+}
+html{
+    /* Set the main background color to #858C90 */
+    background-color: #858C90;
+    /* Set the height of the HTML element to take up 100% of the screen */
+    height: 100%;
+    /* Set the main font to be 16px Raleway or sans-serif if Raleway isn't available */ 
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 16px;
 
-/* Make everything in the header white by default */
+}
 
-/* Give H1's immediately inside of the header an uppercase text transform and a 1.1rem font size */
+header{   
+    /* Make everything in the header white by default */
+    color: white;
+}
 
-/* Give paragraphs immediately inside of the header a 0.9rem font size */
+header > h1{ /*the > says that it has to be a direct child of the header */
+    /* Give H1's immediately inside of the header an uppercase text transform and a 1.1rem font size */ 
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+header p{
+    /* Give paragraphs immediately inside of the header a 0.9rem font size */
+    font-size: 00.9rem;
+}
 
 /* Part 2 - Display */
 
-/* Make each h1 or p immediately inside of the header 
-    - display inline block, 
-    - have a right padding of 2rem, 
-    - and a 1px white border on the right */
-
-/* Set the header to be 
-    - fixed to the top of the screen 
-    - have a background of #444444, 
-    - a height of 2.5rem, 
-    - and a left/right padding of 0.5rem */
+header > h1, header > p{
+    /* Make each h1 or p immediately inside of the header 
+        - display inline block, 
+        - have a right padding of 2rem, 
+        - and a 1px white border on the right */
+    display: inline-block;
+    padding-right: 2rem;
+    border-right: 1px solid white;
+}
+header{
+    /* Set the header to be 
+        - fixed to the top of the screen 
+        - have a background of #444444, 
+        - a height of 2.5rem, 
+        - and a left/right padding of 0.5rem */
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    background-color: #444444;
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    z-index: 999; /* makes the bar solid, anything higher than 0 makes it solid
+    /* padding-left: 0.5rem;
+    padding-right: 0.5rem; ^ same thing */
+   
+}
 
 /* Set main to have a relative position with a 2.5rem bump from the default positioning */
-
+main{
+    position: relative;
+    top: 2.5rem;
+}
 /* Each div that also has a trello-list class should:
     - Display inline-block
     - Have a width of 300px
@@ -51,10 +90,26 @@
     - Have a background color of #DDDDDD
     - Have a border radius of 2px
     */
-
+div.trello-list{
+    display: inline-block;
+    width: 300px;
+    margin: 0 1rem 1rem 0;
+    background-color: #dddddd;
+    border-radius: 2px;
+    vertical-align: top;
+}
 /* Each H2 inside of a trello-list div should be bold, have a margin of 1rem, and a font size equal to the document root's font size */
+div.trello-list  h2{
+    margin: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
 
 /* Each ordered list inside of a trello-list div should have no margin or padding */
+div.trello-list ol{
+    margin: 0;
+    padding: 0;
+}
 
 /* Each list item inside of a trello-list div should have:
     - A white background
@@ -63,7 +118,14 @@
     - 0.5rem padding
     - Have a list style of none
 */
-
+div.trello-list li{
+    background-color: white;
+    list-style: none; /*takes away numbers */
+    font-size: 90%;
+    padding: 0.5rem;
+    margin-bottom: 10px;
+    
+}
 /* Any anchor tag inside of a trello-list div should 
     - display block, 
     - not be underlined, 
@@ -71,6 +133,13 @@
     - have a color of #888888
     - Have left and right padding of 8px, a top padding of 0, and a bottom padding of 5px
     */
+    div.trello-list a {
+        display: block;
+        text-decoration: none;
+        font-size: 0.85em;
+        color: #888888;
+        padding: 0 8px 5px 8px;
+    }
 
 /* Any span somewhere inside of an element with a class of "labels" should:
     - Display inline block,
@@ -78,16 +147,32 @@
     - Be 2rem wide and 0.5rem tall,
     - Have a border radius of 0.5rem
     */
+.labels span{
+    display: inline-block;
+    vertical-align: top;
+    width: 2rem;
+    height: 0.5rem;
+    border-radius: 0.5rem;
+}
 
 /* Part 3 - Special Selectors */
 
 /* Any list item in a div.trello-list that is the last child should not have a margin bottom */
-
+div.trello-list li:last-child{
+    margin-bottom: 0;
+}
 /* Any list item inside of a div.trello-list that the user hovers should have a background of #f5f6f7, a foreground of #092d42, and a finger cursor */
-
+div.trello-list li:hover{
+    background-color: #f5f6f7;
+    color: #092d42;
+    cursor: pointer;
+}
 /* Any anchor tag in a div.trello-list should have a background color of RGB 9, 45, 66 with 10% opacity on hover */
-
-/* Scrollbar Styles
+div.trello-list a:hover{
+    background-color: rgba(9, 45, 66, 0.1);
+    
+}
+/*Scrollbar Styles*/
 body::-webkit-scrollbar {
     width: 10px;
 }
@@ -104,4 +189,3 @@ body::-webkit-scrollbar-thumb {
 body::webkit-scrollbar-thumb:hover {
     background: #888;    
 }
-*/
