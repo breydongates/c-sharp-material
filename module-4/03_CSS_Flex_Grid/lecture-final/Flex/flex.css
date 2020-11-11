@@ -1,0 +1,45 @@
+footer nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+header {
+    display: flex;
+    align-content: flex-end;
+    align-items: center;
+}
+
+/*
+header > a {
+    display: none;
+}
+*/
+
+header > nav {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+div.questionContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.questionContainer article {
+    width: 300px;
+    flex-grow: 1;
+}
+
+.questionContainer article:first-child {
+    color: red;
+}
+
+li:last-child {
+    color: lime;
+}
+
+#targetQuestion {
+    order: -1;
+}
