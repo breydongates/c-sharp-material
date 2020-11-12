@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity is Fun</title>
+    <style>
+        #epic {
+            color: blue;
+        }
+
+        .awesome {
+            color: lime;
+        }
+
+        #epic.awesome {
+            color: magenta;
+        }
+
+        html > body > p {
+            color: seagreen;
+        }
+
+        .awesome:first-child {
+            color: purple;
+        }
+
+        p {
+            color: red;
+        }
+
+        p.awesome {
+            color: cyan;
+        }
+
+        * {
+            color: salmon;
+        }
+
+        #gridMaster {
+            display: grid;
+            grid-template-areas:
+                "head"
+                "shoulders"
+                "knees"
+                "toes";
+        }
+
+        #mattsExample {
+            grid-template-areas:
+                "header header"
+                "main sidebar"
+                "main ..."
+                "footer footer";
+        }
+
+        header {
+            grid-area: head;
+        }
+
+        main {
+            grid-area: shoulders;
+            display: grid;
+            grid-template-areas: "eyes ears mouth";
+        }
+
+        #eyes {
+            grid-area: eyes;
+        }
+
+        #ears {
+            grid-area: ears;
+        }
+
+        #mouth {
+            grid-area: mouth;
+        }
+
+        aside {
+            grid-area: knees;
+        }
+
+        footer {
+            grid-area: toes;
+        }
+
+        /* Does not work */
+        #gridMaster section {
+            grid-area: shoulders;
+        }
+
+        @media screen and (min-width: 720px) {
+            main {
+                grid-template-areas: 
+                    "eyes"
+                    "mouth"
+                    "ears";
+            }
+
+            #gridMaster {
+                grid-template-areas: 
+                    "head head"
+                    "shoulders knees"
+                    "toes toes";
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <p class="awesome" id="epic">Hello World</p>
+    <div id="gridMaster">
+        <header></header>
+        <main>
+            <section id="eyes"></section>
+            <section id="ears"></section>
+            <section id="mouth"></section>
+        </main>
+        <aside></aside>
+        <footer></footer>
+    </div>
+</body>
+</html>
