@@ -1,0 +1,26 @@
+
+footer nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+ header{
+display: flex; 
+align-items: center;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+div.questionContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.questionContainer article{
+    width: 300px;
+    flex-grow: 1;
+}

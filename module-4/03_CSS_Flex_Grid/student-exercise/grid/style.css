@@ -50,3 +50,129 @@ header img {
 #student-picture img{
     border-radius: 50%;
 }
+
+#main-grid{
+    display: grid;
+    align-items: center;
+    grid-template-areas: 
+    "headline"
+    "picture"
+    "quote"
+    "contact"
+    "profile"
+    "experience-grid";
+}
+
+#main-grid > #experience-grid{
+    display: grid;
+    grid-template-areas:
+    "code"
+    "database"
+    "web"
+    "design";
+}
+#headline{
+    grid-area: headline;
+}
+
+#experience-grid{
+    grid-area: experience-grid;
+}
+#student-picture{
+    grid-area: picture;
+    text-align: center;
+}
+
+#student-contact{
+    grid-area: contact;
+    text-align: center;
+}
+#student-quote{
+    grid-area: quote;
+}
+
+#student-profile{
+    grid-area: profile;
+}
+
+#experience-code{
+    grid-area: code;
+}
+
+#experience-database{
+    grid-area: database;
+}
+
+#experience-web{
+    grid-area: web;
+}
+
+#experience-design{
+    grid-area: design;
+}
+
+@media screen and (min-width: 1025px){
+    #main-grid{
+        display: grid;
+        columns: 1fr 1fr 1fr;
+        column-gap: 50px;
+        row-gap: 20px;
+        grid-template-areas: 
+        "headline headline picture"
+        "quote quote picture"
+        "profile profile contact"
+        "experience-grid experience-grid experience-grid";
+    }
+    
+    #main-grid > #experience-grid{
+        display: grid;
+        columns: 1fr 1fr;
+        row-gap: 20px;
+        column-gap: 50px;
+        grid-template-areas: 
+        "code code"
+        "database database"
+        "web design";
+    }   
+}
+@media screen and (max-width: 1024px){
+    #main-grid{
+        display: grid;
+        column-gap: 35px;
+        columns: 1fr 1fr;
+        grid-template-areas: 
+        "headline headline"
+        "quote picture"
+        "quote contact"
+        "profile profile"
+        "experience-grid experience-grid";
+    }
+    #main-grid > #experience-grid{
+        display :grid;
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-areas: 
+        "code web"
+        "database design";
+    }
+}
+@media screen and (max-width: 450px){
+    #main-grid{
+        display: grid;
+        grid-template-areas:
+        "headline"
+        "picture"
+        "contact"
+        "quote"
+        "profile"
+        "experience-grid";
+    }
+    #main-grid > #experience-grid{
+        display: grid;
+        grid-template-areas: 
+        "code"
+        "web"
+        "database"
+        "design";
+    }
+}
