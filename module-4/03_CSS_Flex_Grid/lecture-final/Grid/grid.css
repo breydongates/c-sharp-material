@@ -1,0 +1,54 @@
+.container {
+    display: grid;
+    grid-template-areas:
+        "bitsAndBytes"
+        "events"
+        "main"
+        "sidebarNav"
+        "footer";
+}
+
+header {
+    grid-area: bitsAndBytes;
+}
+
+footer {
+    grid-area: footer;
+}
+
+main {
+    grid-area: main;
+}
+
+#upcoming-events {
+    grid-area: events;
+}
+
+nav {
+    grid-area: sidebarNav;
+}
+
+@media screen and (min-width: 768px) {
+
+    .container {
+        grid-template-areas:
+            "bitsAndBytes bitsAndBytes"
+            "sidebarNav events"
+            "main main"
+            "footer footer";
+        grid-template-columns: 2fr 1fr;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+    .container {
+        grid-template-areas:
+            "bitsAndBytes bitsAndBytes bitsAndBytes"
+            "sidebarNav main events"
+            "footer footer footer";
+        grid-template-columns: 250px 1fr 225px;
+    }
+
+}
