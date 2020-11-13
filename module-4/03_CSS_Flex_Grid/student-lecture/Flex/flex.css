@@ -24,3 +24,7 @@ div.questionContainer{
     width: 300px;
     flex-grow: 1;
 }
+
+.questionContainer article:first-child{
+    color:red;
+}
