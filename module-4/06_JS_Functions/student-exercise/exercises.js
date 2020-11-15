@@ -75,9 +75,9 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  */
 
 /*
- * Write and document a function called findLargest.
+ * Write and document a function called findLargest that takes in an array parameter.
  *
- * Using `forEach`, find the largest element in an array.
+ * Using `forEach` or `reduce`, find the largest element in an array.
  * It must work for strings and numbers.
  */
 
