@@ -10,6 +10,7 @@
 
 console.debug("Debug message from our JavaScript file!");
 console.log("Log message from our JavaScript file!");
+//console.batman('Hello Bruce');
 console.info("Info message from our JavaScript file!");
 console.warn("Warning message from our JavaScript file!");
 console.error("Error message from our JavaScript file!");
@@ -37,11 +38,37 @@ console.error("Error message from our JavaScript file!");
  * They don't have a return type and the naming convention is camel-case.
  */
 function variables() {
-  // TODO: Declares a variable where the value cannot be changed
-  // TODO: Declares a variable those value can be changed
+  var currentHour; 
+  // Declares a variable where the value cannot be changed
+  const dayOfWeek = 'Friday';
+
+  // Declares a variable those value can be changed
+  let currentMinute = 55;
+  currentMinute = 56;
+  currentMinute++;
+
+  currentHour = 10;
+  console.info('The current day is', dayOfWeek);
+  console.info('the current hour is' + currentHour);
+  console.info('The current minute is' + currentMinute);
   // TODO: Declares a variable that will always be an array
-  // TODO: Demonstrate console logging
+const myArray = [1, 2, 3];
+
+myArray.push(42);
+
+console.debug('My array!', myArray);
+
+const anotherArray = null;
+
+// says the same as if(myArray != null && myArray != undefined)
+if (myArray){
+  console.log('This is true');
 }
+
+  // TODO: Demonstrate console logging
+  // you do that on chrome while in console ex. type in variable()
+}
+
 
 /**
  * Functions can also accept parameters.
@@ -100,6 +127,16 @@ function falsy(x) {
     console.log(`${x} is falsy`);
   }
 }
+
+const car = {
+  make: 'honda',
+  model: 'civic',
+  milesDriven: 0,
+  currentValue: 15000
+};
+car.milesDriven++;
+car.currentValue = 12000;
+
 
 /*
 ########################
@@ -200,6 +237,28 @@ function stringFunctions(value) {
         - trim()
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
+}
+
+function displayForceUsers(){
+  let users = ['Luke Skywalker', 'John Fulton', 'Darth Breydon', 'Da Baby'];
+
+  users.push('Garth Brooks')
+  console.log(users.pop());
+  users.shift();
+  users.unshift('Elmo');
+
+  const droids = ['dog', 'beef', 'hair'];
+  console.info(users.concat(droids));
+
+  const copyOfUsers = users.splice();
+
+  users.splice(2, 0, 'Ray');
+
+  console.debug(users);
+console.debug(copyOfUsers);
+  for(let i =0; i < users.length; i++){
+    console.debug('Force user at index ' + i + 'is' + users[i]);
+  }
 }
 
 
