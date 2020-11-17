@@ -15,9 +15,12 @@ function returnOne() {
  * Also, we don't *have* to return anything from the actual function. This will result in returning "undefined"
  *
  * @param {any} value the value to print to the console
+ * @returns {Boolean} true if it completed without error
  */
 function printToConsole(value) {
   console.log(value);
+
+  return true;
 }
 
 /**
@@ -26,17 +29,28 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
-
+function multiplyTogether(firstParameter, secondParameter){
+  /*if(firstParameter === undefined){
+    first = 0;
+  }
+  if(secondParameter === undefined){
+    secondParameter = 0;
+  }
+  */
+  return firstParameter * secondParameter;
+}
 
 
 /**
  * This version makes sure that no parameters are ever missing.
  * Call this function multiplyNoUndefined
  *
- * @param {number} [firstParameter=0] the first parameter to multiply
- * @param {number} [secondParameter=0] the second parameter to multiply
+ * @param {number} [firstParameter=0] the first parameter to multiply(defaults to 0)
+ * @param {number} [secondParameter=0] the second parameter to multiply(defaults to 0)
  */
- 
+ function multiplyNoUndefined(firstParameter=0, secondParameter=0){
+   return firstParameter * secondParameter;
+ }
 
 
 /**
@@ -45,7 +59,18 @@ function printToConsole(value) {
  * @param {...any} inputValues the items to log. Can be empty or many many items long
  */
 
-
+function logAllParameters(...inputValues){
+  for(let i=0; i < inputValues.length; i++){
+    console.log(inputValues[i]);
+  }
+}
+function logAllParametersOldWay(){
+  const inputValues = arguments;
+  console.log(arguments);
+  for(let i=0; i < inputValues.length; i++){
+    console.log(inputValues[i]);
+  }
+}
  
 // FLOW AND SCOPE
 
@@ -86,7 +111,7 @@ function scopeTest() {
   if (true) {
     // this variable lives inside this block and doesn't
     // exist outside of the block
-    let scopedToBlock = inScopeInScopeTest;
+    var scopedToBlock = inScopeInScopeTest;
   }
 
   // scopedToBlock doesn't exist here so an error will be thrown
@@ -163,4 +188,30 @@ function isEven(number) {
  */
 function findFirstEvenNumber(numbers) {
   
+}
+function multByEight(num){
+  return num * 8;
+}
+const mathHelpers = {
+  firstEven: findFirstEvenNumber, 
+  multiplyByEight: multByEight,
+
+  multiplyByFour: function multByFour(num){
+    return num * 4;
+  },
+  multiplyByTwo: function(num){
+    return num * 2;
+  },
+
+  multiplyByTwelve: (num) => {
+    return num * 12;
+  },
+
+  multiplyByTen: (num) => num * 10,
+};
+
+const notConsole = {
+  log: function(...thingsToLog){
+
+  }
 }
