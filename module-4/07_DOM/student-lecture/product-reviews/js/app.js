@@ -6,7 +6,9 @@ const name = 'Cigar Parties for Dummies';
  * once you have the element you can add the product name to the span.
  */
 function setPageTitle() {
+  const span = document.querySelector('.name');
 
+  span.innerText = name;
 }
 
 const description = 'Host and plan the perfect cigar party for all of your squirrelly friends.';
@@ -15,7 +17,9 @@ const description = 'Host and plan the perfect cigar party for all of your squir
  * Add our product description to the page.
  */
 function setPageDescription() {
+  const para = document.querySelector('div#main > .description');
 
+  para.innerText = description;
 }
 
 const reviews = [
@@ -55,23 +59,27 @@ const reviews = [
  * to create the elements needed for our markup and add them to the DOM
  */
 function displayReviews() {
+  const main = document.querySelector('#main');
+  
   // For Each Review:
-  {
+  reviews.forEach(review => {
     // Create a new div and store it in a variable named container
-    let container;
+    let container = document.createElement('div');
 
     // Add the 'review' class to the element we just created
+    container.classList.add('review');
 
     // Call the following helper methods to add little pieces of the user interface
-    /*
+    
     addReviewer(container, review.reviewer);
     addRating(container, review.rating);
     addTitle(container, review.title);
     addReview(container, review.review);
-    */
+    
 
     // Add the new div to the main application area
-  }
+    main.appendChild(container);
+  });
 }
 
 /**
@@ -82,7 +90,11 @@ function displayReviews() {
  * @param {string} name The name of the reviewer
  */
 function addReviewer(parent, name) {
+  var header = document.createElement('h4');
 
+  header.innerText = name;
+
+  parent.appendChild(header);
 }
 
 /**
@@ -91,7 +103,11 @@ function addReviewer(parent, name) {
  * @param {string} title a string representing the title of the review
  */
 function addTitle(parent, title) {
+  const header = document.createElement('h3');
 
+  header.innerText = title;
+
+  parent.appendChild(header);
 }
 
 /**
@@ -100,7 +116,11 @@ function addTitle(parent, title) {
  * @param {string} review a string representing the body of the review. May contain HTML.
  */
 function addReview(parent, review) {
+  const para = document.createElement('p');
 
+  para.innerHTML = review;
+
+  parent.appendChild(para);
 }
 
 /**
@@ -110,7 +130,19 @@ function addReview(parent, review) {
  * @param {Number} numberOfStars a Number indicating the number of stars for the review from 1-5
  */
 function addRating(parent, numberOfStars) {
+    const ratingDiv = document.createElement('div');
 
+    ratingDiv.classList.add('rating');
+
+    for(let i = 0; i < numberOfStars; i++){
+      const star = document.createElement('img');
+      star.setAttribute('src', 'img/star.png');
+      ratingDiv.appendChild(star);
+    }
+
+    parent.insertAdjacentElement('beforeend', ratingDiv);
+
+    
 }
 
 // set the product reviews page title

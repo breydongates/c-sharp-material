@@ -120,8 +120,7 @@ function makeHappy(newArray, Happy){
      arrayParameter.forEach(element => {
          if(element > largest){
              largest = element}
-     });
-     
+     }); 
      return largest;
     }
      
