@@ -48,18 +48,18 @@ function displayReview(review) {
   const main = document.getElementById('main');
 
   // This grabs a template out of the HTML and clones it, then selects the template to customize it
-  const template = document.getElementById('review-template').content.cloneNode(true);
-  template.querySelector('h4').innerHTML = review.reviewer;
-  template.querySelector('h3').innerHTML = review.title;
-  template.querySelector('p').innerHTML = review.review;
+  const clonedNode = document.getElementById('review-template').content.cloneNode(true);
+  clonedNode.querySelector('h4').innerHTML = review.reviewer;
+  clonedNode.querySelector('h3').innerHTML = review.title;
+  clonedNode.querySelector('p').innerHTML = review.review;
 
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
-    const img = template.querySelector('img').cloneNode();
-    template.querySelector('.rating').appendChild(img);
+    const img = clonedNode.querySelector('img').cloneNode();
+    clonedNode.querySelector('.rating').appendChild(img);
   }
   
-  main.appendChild(template);
+  main.appendChild(clonedNode);
 }
 
 /**
@@ -122,6 +122,11 @@ function initialize() {
 
   // TODO: When the user presses a key on the input with an ID of inputDesc, 
   // check for enter and escape and call exitDescriptionEdit
+
+  // ------------------------------------------------
+
+  // TODO: Add a click listener for when the user clicks the body element
+  
 }
 
 /**
