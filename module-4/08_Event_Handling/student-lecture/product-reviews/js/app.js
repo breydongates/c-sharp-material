@@ -41,59 +41,25 @@ function displayReviews() {
 }
 
 /**
- *
+ * Displays all reviews on the page
  * @param {Object} review The review to display
  */
 function displayReview(review) {
   const main = document.getElementById('main');
-  const tmpl = document.getElementById('review-template').content.cloneNode(true);
-  tmpl.querySelector('h4').innerHTML = review.reviewer;
-  tmpl.querySelector('h3').innerHTML = review.title;
-  tmpl.querySelector('p').innerHTML = review.review;
+
+  // This grabs a template out of the HTML and clones it, then selects the template to customize it
+  const template = document.getElementById('review-template').content.cloneNode(true);
+  template.querySelector('h4').innerHTML = review.reviewer;
+  template.querySelector('h3').innerHTML = review.title;
+  template.querySelector('p').innerHTML = review.review;
+
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
-    const img = tmpl.querySelector('img').cloneNode();
-    tmpl.querySelector('.rating').appendChild(img);
+    const img = template.querySelector('img').cloneNode();
+    template.querySelector('.rating').appendChild(img);
   }
-  main.appendChild(tmpl);
-}
-
-// LECTURE STARTS HERE ---------------------------------------------------------------
-
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
-
-/**
- * Take an event on the description and swap out the description for a text box.
- *
- * @param {Event} event the event object
- */
-function toggleDescriptionEdit(desc) {
-  const textBox = desc.nextElementSibling;
-  textBox.value = description;
-  textBox.classList.remove('d-none');
-  desc.classList.add('d-none');
-  textBox.focus();
-}
-
-/**
- * Take an event on the text box and set the description to the contents
- * of the text box and then hide the text box and show the description.
- *
- * @param {Event} event the event object
- * @param {Boolean} save should we save the description text
- */
-function exitDescriptionEdit(textBox, save) {
-  let desc = textBox.previousElementSibling;
-  if (save) {
-    desc.innerText = textBox.value;
-  }
-  textBox.classList.add('d-none');
-  desc.classList.remove('d-none');
+  
+  main.appendChild(template);
 }
 
 /**
@@ -127,7 +93,87 @@ function resetFormValues() {
   document.getElementById('review').value = '';
 }
 
+// LECTURE STARTS HERE ---------------------------------------------------------------
+
+// TODO: Only call initialize when the DOM is ready
+initialize();
+
+function initialize() {
+  // set the product reviews page title
+  setPageTitle();
+
+  // set the product reviews page description
+  setPageDescription();
+
+  // display all of the product reviews on our page
+  displayReviews();
+
+  // -----------------------------------------------
+
+  // TODO: When the user clicks on btnToggleForm, call showHideForm
+
+  // TODO: When the user clicks btnSaveReview, call saveReview
+
+  // -----------------------------------------------
+
+  // TODO: When the user double clicks the description paragraph, call showDescriptionEdit and pass it the event
+
+  // TODO: When the user's mouse leaves the input with an ID of inputDesc, call exitDescriptionEdit without saving
+
+  // TODO: When the user presses a key on the input with an ID of inputDesc, 
+  // check for enter and escape and call exitDescriptionEdit
+}
+
 /**
  * I will save the review that was added using the add review from
  */
-function saveReview() {}
+function saveReview() {
+  // Get the value of the name, title, review, and rating
+
+  // Create a new review object with these values for reviewer, title, review, and rating
+
+  // Add the new object to reviews
+
+  // Call displayReview with the new review as a parameter
+
+  // Call showHideForm to toggle the form visibility
+}
+
+/**
+ * Take an event on the description and swap out the description for a text box.
+ *
+ * @param {Event} event the event object
+ */
+function showDescriptionEdit(event) {
+  const target = event.target;
+
+  const textBox = target.nextElementSibling;
+  textBox.value = description;
+  textBox.classList.remove('d-none');
+
+  target.classList.add('d-none');
+
+  textBox.focus();
+}
+
+/**
+ * Take an event on the text box and set the description to the contents
+ * of the text box and then hide the text box and show the description.
+ *
+ * @param {Event} event the event object representing the description we're editing
+ * @param {Boolean} save should we save the description text
+ */
+function exitDescriptionEdit(event, save) {
+  const target = null; // TODO: This comes from the event
+
+  if (!target) return; // this line can go once target is set
+
+  const desc = target.previousElementSibling;
+
+  // TODO: If we're saving, get the new value and set that into description and desc
+  if (save) {
+  }
+
+  target.classList.add('d-none');
+  desc.classList.remove('d-none');
+}
