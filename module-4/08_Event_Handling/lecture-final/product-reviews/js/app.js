@@ -41,91 +41,25 @@ function displayReviews() {
 }
 
 /**
- *
+ * Displays all reviews on the page
  * @param {Object} review The review to display
  */
 function displayReview(review) {
   const main = document.getElementById('main');
-  const tmpl = document.getElementById('review-template').content.cloneNode(true);
-  tmpl.querySelector('h4').innerHTML = review.reviewer;
-  tmpl.querySelector('h3').innerHTML = review.title;
-  tmpl.querySelector('p').innerHTML = review.review;
+
+  // This grabs a template out of the HTML and clones it, then selects the template to customize it
+  const clonedNode = document.getElementById('review-template').content.cloneNode(true);
+  clonedNode.querySelector('h4').innerHTML = review.reviewer;
+  clonedNode.querySelector('h3').innerHTML = review.title;
+  clonedNode.querySelector('p').innerHTML = review.review;
+
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
-    const img = tmpl.querySelector('img').cloneNode();
-    tmpl.querySelector('.rating').appendChild(img);
+    const img = clonedNode.querySelector('img').cloneNode();
+    clonedNode.querySelector('.rating').appendChild(img);
   }
-  main.appendChild(tmpl);
-}
-
-// LECTURE STARTS HERE ---------------------------------------------------------------
-
-document.addEventListener('DOMContentLoaded', () => {
-  setPageTitle();
-  setPageDescription();
-  displayReviews();
-
-  // When a user clicks on the description show input box
-  const desc = document.querySelector('.description');
-  desc.addEventListener('click', (event) => {
-    toggleDescriptionEdit(event.target);
-  });
-
-  const inputDesc = document.getElementById('inputDesc');
-  inputDesc.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-      exitDescriptionEdit(event.target, true);
-    }
-    if (event.key === 'Escape') {
-      exitDescriptionEdit(event.target, false);
-    }
-  });
-
-  inputDesc.addEventListener('mouseleave', (event) => {
-    exitDescriptionEdit(event.target, false);
-  });
-
-  // Show/Hide the Add Review Form
-  const btnToggleForm = document.getElementById('btnToggleForm');
-  btnToggleForm.addEventListener('click', () => {
-    showHideForm();
-  });
-
-  // save the review and display it
-  const btnSaveReview = document.getElementById('btnSaveReview');
-  btnSaveReview.addEventListener('click', (event) => {
-    event.preventDefault();
-    saveReview();
-  });
-});
-
-/**
- * Take an event on the description and swap out the description for a text box.
- *
- * @param {Event} event the event object
- */
-function toggleDescriptionEdit(desc) {
-  const textBox = desc.nextElementSibling;
-  textBox.value = description;
-  textBox.classList.remove('d-none');
-  desc.classList.add('d-none');
-  textBox.focus();
-}
-
-/**
- * Take an event on the text box and set the description to the contents
- * of the text box and then hide the text box and show the description.
- *
- * @param {Event} event the event object
- * @param {Boolean} save should we save the description text
- */
-function exitDescriptionEdit(textBox, save) {
-  let desc = textBox.previousElementSibling;
-  if (save) {
-    desc.innerText = textBox.value;
-  }
-  textBox.classList.add('d-none');
-  desc.classList.remove('d-none');
+  
+  main.appendChild(clonedNode);
 }
 
 /**
@@ -159,22 +93,149 @@ function resetFormValues() {
   document.getElementById('review').value = '';
 }
 
+// LECTURE STARTS HERE ---------------------------------------------------------------
+
+// Only call initialize when the DOM is ready
+document.addEventListener('DOMContentLoaded', e => {
+  console.log('DOM Ready', e);
+  initialize();
+});
+
+function initialize() {
+  // set the product reviews page title
+  setPageTitle();
+
+  // set the product reviews page description
+  setPageDescription();
+
+  // display all of the product reviews on our page
+  displayReviews();
+
+  // -----------------------------------------------
+
+  // When the user clicks on btnToggleForm, call showHideForm
+  const btnToggleForm = document.querySelector('#btnToggleForm');
+  btnToggleForm.addEventListener('click', e => {
+    console.log('Button clicked', e.target);
+    showHideForm();
+    e.stopPropagation();
+  });
+
+  // When the user clicks btnSaveReview, call saveReview
+  const btnSaveReview = document.querySelector('#btnSaveReview');
+  btnSaveReview.addEventListener('click', e => {
+    saveReview();
+    e.preventDefault();
+  });
+
+  // -----------------------------------------------
+
+  // When the user double clicks the description paragraph, call showDescriptionEdit and pass it the event
+  const descParagraph = document.querySelector('p.description');
+  descParagraph.addEventListener('dblclick', e => {
+    showDescriptionEdit(e);
+  });
+
+  // When the user's mouse leaves the input with an ID of inputDesc, call exitDescriptionEdit without saving
+  const descInput = document.querySelector('#inputDesc');
+  descInput.addEventListener('mouseleave', e => {
+    console.debug('Mouse left input', e);
+    exitDescriptionEdit(e, false);
+  });
+
+  // When the user presses a key on the input with an ID of inputDesc, 
+  // check for enter and escape and call exitDescriptionEdit
+  descInput.addEventListener('keyup', e => {
+    console.debug('Key Up', e);
+    switch (e.key) {
+      case "Enter":
+        exitDescriptionEdit(e, true);
+        break;
+
+      case "Escape":
+        exitDescriptionEdit(e, false);
+        break;
+    }
+  });
+
+  // ------------------------------------------------
+
+  // Add a click listener for when the user clicks the body element
+  document.querySelector('body').addEventListener('click', e => {
+    console.log('Recorded a click on body', e.target);
+  });
+  
+}
+
 /**
  * I will save the review that was added using the add review from
  */
 function saveReview() {
-  const name = document.getElementById('name');
-  const title = document.getElementById('title');
-  const review = document.getElementById('review');
-  const rating = document.getElementById('rating');
+  // Get the value of the name, title, review, and rating
+  const nameInput = document.querySelector('#name');
+  const name = nameInput.value;
 
+  console.log('The name is ' + name);
+
+  const title = document.querySelector('#title').value;
+  const review = document.querySelector('#review').value;
+  const rating = document.querySelector('#rating').value;
+
+  // Create a new review object with these values for reviewer, title, review, and rating
   const newReview = {
-    reviewer: name.value,
-    title: title.value,
-    review: review.value,
-    rating: rating.value
+    reviewer: name,
+    title: title,
+    review: review,
+    rating: rating,
   };
+
+  console.debug('Adding review ', newReview);
+
+  // Add the new object to reviews
   reviews.push(newReview);
+
+  // Call displayReview with the new review as a parameter
   displayReview(newReview);
+
+  // Call showHideForm to toggle the form visibility
   showHideForm();
+}
+
+/**
+ * Take an event on the description and swap out the description for a text box.
+ *
+ * @param {Event} event the event object
+ */
+function showDescriptionEdit(event) {
+  const target = event.target;
+
+  const textBox = target.nextElementSibling;
+  textBox.value = description;
+  textBox.classList.remove('d-none');
+
+  target.classList.add('d-none');
+
+  textBox.focus();
+}
+
+/**
+ * Take an event on the text box and set the description to the contents
+ * of the text box and then hide the text box and show the description.
+ *
+ * @param {Event} event the event object representing the description we're editing
+ * @param {Boolean} shouldSave should we save the description text
+ */
+function exitDescriptionEdit(event, shouldSave) {
+  const input = event.target;
+
+  const desc = input.previousElementSibling;
+
+  // If we're saving, get the new value and set that into description and desc
+  if (shouldSave) {
+    description = input.value;
+    desc.innerText = description;
+  }
+
+  input.classList.add('d-none');
+  desc.classList.remove('d-none');
 }
