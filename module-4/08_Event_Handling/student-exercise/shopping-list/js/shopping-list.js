@@ -37,8 +37,19 @@ function displayGroceries() {
     checkCircle.classList.add('far', 'fa-check-circle');
 
     // TODO: When the list item is clicked, add the completed class to li and checkCircle
-
-    // TODO: When the list item is double clicked, add the completed class to li and checkCircle
+    li.addEventListener('click', e => {
+      li.classList.add('completed');
+    });
+    checkCircle.addEventListener('click', e => {
+    checkCircle.classList.add('completed');
+    });
+    // TODO: When the list item is double clicked, remove the completed class to li and checkCircle
+    li.addEventListener('dblclick', e => {
+      li.classList.remove('completed');
+    });
+    checkCircle.addEventListener('dblclick', e => {
+    checkCircle.classList.remove('completed');
+    });
 
     li.appendChild(checkCircle);
     ul.appendChild(li);
@@ -46,9 +57,28 @@ function displayGroceries() {
 }
 
 // Wait for the document's content to be ready
-document.addEventListener('ThisIsTheWrongEventUseTheRightEventInstead', () => {
+document.addEventListener('DOMContentLoaded', () => {
   setPageTitle();
   displayGroceries();  
 
   // TODO: Listen to the click event on the button and react appropriately (see shopping-list.md)
+  const toggleAll = document.querySelector('.btn');
+  toggleAll.addEventListener('click', e => {
+   const complete = document.querySelectorAll('li');
+   allItemsIncomplete = !allItemsIncomplete;
+    if (allItemsIncomplete){
+      complete.forEach((item) => {
+        item.classList.remove('completed');
+        toggleAll.innerText = 'Mark All Complete';
+      })
+    }
+    else{
+      complete.forEach((item) => {
+        item.classList.add('completed');
+        toggleAll.innerText = 'Mark All Incomplete';
+      })
+    }
+  });
+
+
 });
