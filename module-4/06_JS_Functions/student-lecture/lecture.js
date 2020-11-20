@@ -135,6 +135,10 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
+    let total = 0;
+    numbersToSum.forEach(num => total+= num);
+
+    return total;
 
 }
 
@@ -145,7 +149,7 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbersUsingReduce(numbersToSum) {
-
+    return numbersToSum.reduce((total, currentValue) => total + currentValue, 0);
 }
 
 /**
@@ -157,9 +161,16 @@ function sumAllNumbersUsingReduce(numbersToSum) {
  * @returns {number[]} the multiplied numbers
  */
 function multiplyAll(numbersToMultiply, multiplier) {
-  
+    return numbersToMultiply.map(num => num * multiplier);
 }
-
+function multiplyForLoop(numbers, multiplier){
+  const result = [];
+  numbers.forEach(num => {
+    const multipliedValue = num * multiplier;
+    result.push(multipliedValue);
+  });
+  return result;
+}
 /**
  * Takes an array and returns a new array of only numbers that are
  * multiples of 3
@@ -168,8 +179,13 @@ function multiplyAll(numbersToMultiply, multiplier) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
+function isDivisibleByThree(num){
+  return num % 3 === 0;
+}
 function allDivisibleByThree(numbersToFilter) {
-
+ // return numbersToFilter.filter(n => n % 3 === 0);
+ //return numbersToFilter.filter(n => isDivisibleByThree(n));
+ return numbersToFilter.filter(isDivisibleByThree);
 }
 
 /**
@@ -187,7 +203,7 @@ function isEven(number) {
  * @returns {number|undefined} the first even number, or undefined if no even numbers were provided.
  */
 function findFirstEvenNumber(numbers) {
-  
+  return numbers.find(num => isEven(num));
 }
 function multByEight(num){
   return num * 8;

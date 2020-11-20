@@ -14,7 +14,7 @@ function add(num1, num2, num3) {
 
 const myNumbers = [1, 2, 3];
 
-const result = 0; // TODO: Call add with our numbers
+const result = add(...myNumbers); // TODO: Call add with our numbers
 
 console.log('Spreading our numbers out results in ', result);
 
@@ -27,7 +27,7 @@ const myCar = {
   vin: 12345,
 }
 
-const friendsCar = myCar; //TODO: Use spread to clone our objects
+const friendsCar = {...myCar}; //TODO: Use spread to clone our objects
 friendsCar.vin = 67890;
 
 console.log('I drive this car', myCar);
