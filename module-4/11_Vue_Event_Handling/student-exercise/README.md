@@ -16,45 +16,33 @@ As you complete a feature, run the unit tests, and make sure the tests associate
 
 Make sure you follow the requirements and name your properties, methods, and computed properties exactly as they're shown. The tests rely on these names. If you have tests failing and aren't sure why, this could be the reason.
 
-### Test failures
-
-If there are any failing tests, you'll see the number of failures in the terminal window. Depending on your terminal window size, you may have to scroll up to see the number of failing tests as there are other unassociated error messages that appear after the number. You don't need to worry about the other error messages, unless you don't see the number of test failures:
-
-![Tests completed with failures](./img/most-tests-fail.png)
-
-If you want to see which tests are failing and why, you'll have to scroll up further. Near the top is the list of the passing and failing tests:
-
-![Test failure list](./img/test-failure-list.png)
-
-Below that list are the details of why each test failed. The numbers in the list above correspond to the numbers in the list below:
-
-![Test failure details](./img/test-failure-details.png)
-
-## Step Three: Add a new user form
+## Step Two: Add a new user form
 
 The markup for the new user form is already in the template. Complete the following tasks:
 
 - The form should be hidden by default.
-  - Use a property called `showForm`.
-  - Toggle `showForm` with `v-on`.
-  - Use `v-show` to show/hide form appropriately.
+  - Use a property called `showForm` to track the visibility of the form.
+  - Toggle `showForm` with `v-on` when the user clicks the "Add New User" button.
+  - Use `v-show` to show/hide form appropriately based on `showForm`.
 - Each form field should be bound to the correct property in the `newUser` object.
+
+## Step Three: Add the user when the button is clicked
+
 - Create a `saveUser` method that adds a new user to the `users` array when the form is submitted.
-  - Clear the form after the user is saved.
-
-> Once you complete this step, the three tests under "Add new user form" pass.
-
+- When the user clicks the "Save User" button, call `saveUser`
+- Set the newly-created user's id equal to nextId and increase nextId by 1
+- Add the newly-created user to the users array
+- Clear the form after the user is saved by setting the `newUser` equal to a new object with default values for firstName, lastName, username, emailAddress, id, and status.
+- 
 ## Step Four: Add an enable/disable button in action column
 
 In the "Action" column of the table, there's a button that enables or disables the user. Complete the following tasks:
 
 - If the user status = 'Active', the button text displays 'Disable.'
 - If the user status = 'Disabled', the button text displays 'Enable.'
-- When you click the button, it calls a method `flipStatus()` and change the user's status from 'Active' to 'Disabled', or 'Disabled' to 'Active.'
+- When you click the button, it calls a method `flipStatus()` and changes the user's status from 'Active' to 'Disabled', or 'Disabled' to 'Active.'
   - The `flipStatus(id)` method takes the user ID as an argument.
-  - You can use the user ID to find the user in the users array and change their status.
-
-> Once you complete this step, the three tests under "Single Row Enable / Disable Action" pass.
+  - You can use the user ID to `find` the user in the users array and change their status.
 
 ## Step Five: Enable, disable, and delete selected users
 
@@ -62,9 +50,9 @@ There are three buttons below the user listing table. Complete the following tas
 
 - Add a `selectedUserIDs` property that defaults to an empty array.
 - When the `selectedUserIDs` array is empty, the buttons should be disabled.
-  - Note: use a computed property named `actionButtonDisabled` for this.
+  - Note: use a computed property named `actionButtonDisabled` for this and bind the individual button's `disabled` property.
 - When the checkbox for a row is checked, add the user's ID to the `selectedUserIDs` array.
-  - Bind the checked value to if the user's ID is in the `selectedUserIDs` array.
+  - Bind the row's checkbox's model to the `selectedUserIDs` array and verify that checking and unchecking updates the selectedUserIds property in the Vue dev tools.
 - Enable Users
   - Sets the status of each selected user to `Active`.
   - Clears all checkboxes when action is completed.
@@ -80,17 +68,26 @@ There are three buttons below the user listing table. Complete the following tas
 
 > Tip: Depending how you retrieve the user ID, Vue may give it to you as a string even though it's a number. This may give you issues with comparison—try converting to a number before adding to `selectedUserIDs` if you have comparison issues.
 
-> Once you complete this step, the eight tests under "Enable, Disable and Delete Actions" pass.
+> Tip: `findIndex` and `splice` are helpful ways of removing things from an array.
+
+> Tip: Setting `selectedUserIds` to an empty array should clear the checkboxes
 
 ## Step Six: Select all checkbox
 
-The "select all" checkbox is the checkbox on the first row with the filter inputs. Complete the following tasks for the "select all" checkbox:
+The "select all" checkbox is the checkbox on the first row with the filter inputs. 
 
-- When clicked to "checked" state, all boxes are checked and all users added to `selectedUserIDs`. When clicked again to "unchecked" state, all boxes are unchecked and all users removed from `selectedUserIDs`.
+Complete these initial tasks for the "select all" checkbox:
+
+- When clicked to "checked" state, add all user ids to `selectedUserIDs`. (hint: calling map on the users array to build an array of ids may be a convenient way of doing this)
+- When clicked again to "unchecked" state, set `selectedUserIDs` to an empty array.
+
+> hint: The above steps can be achieved by listening to the changed event and looking at the event.target.checked value.
+
+Once these steps are working:
+
+- Bind the `checked` property of the select all checkbox to a new computed property that returns true if the length of the `selectedUserIDs` array is the same as the length of the `users` array.
+
+Once this is done, the following statements should now be true:
+
 - If some of the boxes are checked, clicking "select all" selects all users. If clicked again, then it deselects all users.
 - When all individual checkboxes get checked, then "Select all" is checked too.
-- Add/remove the user IDs to/from the array depending upon the checked status of all checkboxes.
-
-At this point, all 17 tests pass, as shown below:
-
-![All Tests Pass](./img/all-tests-pass.png)
