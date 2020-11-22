@@ -1,9 +1,10 @@
 <template>
   <main>
+    <!-- Basic info -->
     <h2>Product Reviews for {{ name }}</h2>
-
     <p class="description">{{ description }}</p>
 
+    <!-- Display information about our individual reviews -->
     <div class="well-display">
       <div class="well">
         <span class="amount">{{ averageRating }}</span>
@@ -36,10 +37,44 @@
       </div>
     </div>
 
+    <!-- Show the addReviewSection when clicked and hide this button -->
+    <input type="button" value="Add Review"> 
+    
+    <!-- Allow the user to add a review -->
+    <section id="addReviewSection">
+      <form>
+        <div class="form-element">
+            <label for="reviewer">Name:</label>
+            <input id="reviewer" type="text" />
+        </div>
+        <div class="form-element">
+            <label for="title">Title:</label>
+            <input id="title" type="text" />
+        </div>
+        <div class="form-element">
+            <label for="rating">Rating:</label>
+            <select id="rating">
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+        </div>
+        <div class="form-element">
+            <label for="review">Review:</label>
+            <textarea id="review"></textarea>
+        </div>
+        <input type="submit" value="Save">
+        <input type="button" value="Cancel" v-on:click="showAddForm = false">
+      </form>
+    </section>
+
+    <!-- List all reviews -->
     <section
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -73,8 +108,10 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
+      nextId: 5,
       reviews: [
         {
+          id: 1,
           reviewer: "Malcolm Gladwell",
           title: "What a book!",
           review:
@@ -83,6 +120,7 @@ export default {
           favorited: false
         },
         {
+          id: 2,
           reviewer: "Tim Ferriss",
           title: "Had a cigar party started in less than 4 hours.",
           review:
@@ -91,6 +129,7 @@ export default {
           favorited: false
         },
         {
+          id: 3,
           reviewer: "Ramit Sethi",
           title: "What every new entrepreneurs needs. A door stop.",
           review:
@@ -99,6 +138,7 @@ export default {
           favorited: false
         },
         {
+          id: 4,
           reviewer: "Gary Vaynerchuk",
           title: "And I thought I could write",
           review:
@@ -110,6 +150,13 @@ export default {
     };
   },
   computed: {
+    filteredReviews() {
+      let reviews = this.reviews;
+
+      // Filtering goes here...
+
+      return reviews;
+    },
     averageRating() {
       let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
@@ -153,6 +200,7 @@ main {
 main div.well-display {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 1rem;
 }
 
 main div.well-display div.well {
