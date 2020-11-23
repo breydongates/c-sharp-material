@@ -37,24 +37,22 @@ books: [
 ]
 ```
 
-Implement the `ReadingList` component to take that data and create a `BookCard` component for each book. At this stage, you only need to create a `BookCard` component per book. Don't worry about showing anything on the `BookCard` yet.
+Modify the `ReadingList` component to get that data from Vuex and create a `BookCard` component for each book. At this stage, you only need to create a `BookCard` component per book. Don't worry about showing anything on the `BookCard` yet.
 
 These are the files you'll edit for this step:
 
 - `src/component/ReadingList.vue`
 - `src/store/index.js`
 
-After you complete step one, run the end-to-end tests with the following command: `npm run test:e2e`.
-
 You may notice that the Book Review page contains simply a title and four empty boxes.
 
 ![Showing an empty div per book](etc/divs-shown.png)
 
-All tests under "Step One Tests" now pass.
-
 ## Step Two: Display book details
 
-Set up the `BookCard` to have a prop that takes a book and shows the details of that book in its UI: title, cover image, and author. The UI must use the provided classes in the CSS for the tests to work correctly:
+Set up the `BookCard` to have a prop that takes a book.
+
+Add HTML to show the details of that book in its UI: an `h2` title, the cover image, and an `h3` author. The UI should use the provided classes in the CSS:
 |  | |
 |------|--------|
 | Book Title | `.book-title` |
@@ -74,26 +72,22 @@ Once you complete this step, all the tests under "Step Two Tests" pass.
 
 Add a new control to the `BookCard` that's a button to toggle the read and unread status of a book. The button must indicate what clicking the button sets the status to. All books with a read status must have the `read` class added to the card.
 
-Remember that the read status must be set through a mutation, not set directly from the `BookCard` component.
+Remember that the read status must be set through a mutation, not set directly from the `BookCard` component (you can check for console errors to make sure you're not doing it incorrectly).
 
-The button that sets the status to read must have a `mark-read` class, and the button that sets the status to unread must have a `mark-unread` class.
-
-Once you complete this step, all tests under "Step Three Tests" pass.
+The button that sets the status to read should have a `mark-read` class, and the button that sets the status to unread must have a `mark-unread` class.
 
 ![Mark read and unread buttons](etc/mark-buttons.png)
 
+Don't worry if your user interface doesn't look exactly like the screenshots.
+
 ## Step Four: Add a `NewBookForm` component
 
-Create a new component that has a form for a user to add a new book to the list. The elements must have the following classes:
+Create a `NewBookForm` component that has a form for a user to add a new book to the list. This should use a Form tag, a submit button, a title input, an author input, and an ISBN input.
 
-|  | |
-|------|--------|
-| Form | `.new-book-form` |
-| Title Input Field | `.title-input` |
-| Author Input Field | `.author-input` |
-| ISBN Input Field | `.isbn-input` |
+Add the component to the page in the `App` component.
 
+The component's form submit event should add the book to the `books` state inside of Vuex. Use a mutation for this; do not make direct edits to the books array outside of `index.js`.
 
-Lastly, add the component to the page in the `App` component.
+>Hint: you may need to worry about preventing the default behavior of the form.
 
-Now, all tests pass.
+Do not worry if the newly-added books do not have valid images, but you can try existing book's ISBN numbers to see if you get better results.
