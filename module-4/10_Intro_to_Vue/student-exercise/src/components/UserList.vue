@@ -23,6 +23,14 @@
           </select>
         </td>
       </tr>
+      <tr>
+        <td>{{users[0]}}</td>
+        <td>{{users}}</td>
+        <td>{{users}}</td>
+        <td>{{users}}</td>
+        <td>{{users}}</td>
+
+      </tr>
       <!-- user listing goes here -->
     </tbody>
   </table>
