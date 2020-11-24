@@ -7,53 +7,53 @@
     <!-- Display information about our individual reviews -->
     <div class="well-display">
       <div class="well">
-        <span class="amount">{{ averageRating }}</span>
+        <span class="amount" v-on:click="setFilter(0)">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="setFilter(1)">
         <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="setFilter(2)">
         <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="setFilter(3)">
         <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="setFilter(4)">
         <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="setFilter(5)">
         <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
     <!-- Show the addReviewSection when clicked and hide this button -->
-    <input type="button" value="Add Review"> 
+    <input type="button" value="Add Review" v-on:click="showAddReview = true"> 
     
     <!-- Allow the user to add a review -->
-    <section id="addReviewSection">
+    <section id="addReviewSection" v-if="showAddReview"> <!-- could also v-show to include in DOM -->
       <form>
         <div class="form-element">
             <label for="reviewer">Name:</label>
-            <input id="reviewer" type="text" />
+            <input id="reviewer" type="text" v-model.trim="newReview.reviewer"/>
         </div>
         <div class="form-element">
             <label for="title">Title:</label>
-            <input id="title" type="text" />
+            <input id="title" type="text" v-model.trim.lazy="newReview.title"/>
         </div>
         <div class="form-element">
             <label for="rating">Rating:</label>
-            <select id="rating">
+            <select id="rating" v-model.number="newReview.rating">
                 <option value="1">1 Star</option>
                 <option value="2">2 Stars</option>
                 <option value="3">3 Stars</option>
@@ -63,10 +63,10 @@
         </div>
         <div class="form-element">
             <label for="review">Review:</label>
-            <textarea id="review"></textarea>
+            <textarea id="review" v-model.trim="newReview.review"></textarea>
         </div>
-        <input type="submit" value="Save">
-        <input type="button" value="Cancel" v-on:click="showAddForm = false">
+        <input type="submit" value="Save" v-on:click.prevent="addNewReviewRevised()">
+        <input type="button" value="Cancel" v-on:click="showAddReview = false"> <!-- @ == v:on: -->
       </form>
     </section>
 
@@ -107,7 +107,16 @@ export default {
       name: "Cigar Parties for Dummies",
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
-      newReview: {},
+        showAddReview: false,
+      newReview: {
+        id: null,
+        reviewer: '',
+        title: '',
+        review: '',
+        rating: 3,
+        favorited: false,
+      },
+      filterByRating: 0,
       nextId: 5,
       reviews: [
         {
@@ -149,12 +158,42 @@ export default {
       ]
     };
   },
+  methods: {
+    setFilter(level){
+      this.filterByRating = level;
+    },
+    addNewReview(e) {
+      console.log('Adding a new reveiw');
+      e.preventDefault();
+    },
+    addNewReviewRevised(){
+      console.log('Revised add new review');
+      this.newReview.id = this.nextId;
+      this.nextId += 1;
+
+      this.reviews.unshift(this.newReview);
+
+      this.newReview = {
+        id: null,
+        reviewer:'',
+        title:'',
+        rating: 0,
+        favorited: false,
+        reveiw: '',
+      },
+      
+
+      this.showAddReview = false;
+    }
+  },
   computed: {
     filteredReviews() {
       let reviews = this.reviews;
 
       // Filtering goes here...
-
+    if(this.filterByRating){
+      reviews = reviews.filter(r => r.rating === this.filterByRating)
+    }
       return reviews;
     },
     averageRating() {

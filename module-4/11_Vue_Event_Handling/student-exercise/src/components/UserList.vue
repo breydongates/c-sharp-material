@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button v-on:click="flipStatus(user.id)" class="btnEnableDisable">Enable or Disable</button>
           </td>
         </tr>
       </tbody>
@@ -64,26 +64,26 @@
       <button>Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click="showForm = true">Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form id="frmAddNewUser" v-if="showForm">
       <div class="field">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" />
+        <input type="text" name="firstName" v-model="newUser.firstName"/>
       </div>
       <div class="field">
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" />
+        <input type="text" name="lastName" v-model="newUser.lastName"/>
       </div>
       <div class="field">
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" v-model="newUser.username"/>
       </div>
       <div class="field">
         <label for="emailAddress">Email Address:</label>
-        <input type="text" name="emailAddress" />
+        <input type="text" name="emailAddress" v-model="newUser.emailAddress"/>
       </div>
-      <button type="submit" class="btn save">Save User</button>
+      <button v-on:click.prevent="saveUser()" type="submit" class="btn save">Save User</button>
     </form>
   </div>
 </template>
@@ -93,6 +93,8 @@ export default {
   name: "user-list",
   data() {
     return {
+    showForm: false,
+    flipStatus: '',
       filter: {
         firstName: "",
         lastName: "",
@@ -106,7 +108,8 @@ export default {
         lastName: "",
         username: "",
         emailAddress: "",
-        status: "Active"
+        status: "Active",
+        showForm: true,
       },
       users: [
         {
@@ -160,7 +163,37 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    saveUser(){
+      console.log('saving user')
+
+      this.newUser.id = this.nextId;
+      this.nextId += 1;
+
+      this.users.unshift(this.newUser);
+
+      this.newUser = {
+        id: null,
+        firstName: '',
+        lastName: '',
+        username: '',
+        emailAddress: '',
+        status: 'Active',
+
+      },
+      this.showForm = false;
+    }
+  },
+  flipStatus(userStatus){
+    userStatus = this.users.find(u => u.id === userStatus);
+    if(this.users.status === 'Active'){
+      this.users.status === 'Disabled';
+    }
+    if(this.users.status === 'Disabled'){
+      this.users.status === 'Active';
+    }
+    
+  },
   computed: {
     filteredList() {
       let filteredUsers = this.users;
