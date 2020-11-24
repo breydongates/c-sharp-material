@@ -35,10 +35,7 @@
 
       <p>{{ review.review }}</p>
 
-      <p>
-        Favorite?
-        <input type="checkbox" v-model="review.favorited" />
-      </p>
+      <button v-on:click="review.rating = 5" v-if="review.rating < 5">Mark as 5 Star</button>
     </section>
   </main>
 </template>
