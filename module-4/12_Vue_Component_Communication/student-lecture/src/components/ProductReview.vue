@@ -43,6 +43,9 @@ export default {
   },
   methods: {},
   computed: {
+    reviews(){
+      return this.$store.state.reviews;
+    },
     filteredReviews() {
       let reviews = this.$store.state.reviews;
 

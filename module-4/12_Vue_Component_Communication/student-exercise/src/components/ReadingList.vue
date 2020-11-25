@@ -1,13 +1,27 @@
 <template>
   <div class="book-container">
-
+    <book-card v-for="b in showBooks"
+              v-bind:key="b.isbn" 
+              v-bind:book="b" />
+               
   </div>
 </template>
 
 <script>
+import BookCard from './BookCard.vue';
 
 export default {
-    name: 'reading-list'
+    name: 'reading-list',
+    components:{
+        BookCard
+        },
+
+   computed: {
+      showBooks() {
+        return this.$store.state.books;
+      },
+   },
+   strict: true
 }
 </script>
 
