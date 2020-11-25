@@ -37,7 +37,7 @@ export default {
   name: "ReviewStatistics",
   computed: {
     reviews() {
-      return []; // TODO: Get this data from a centralized store
+      return this.$store.state.reviews; // TODO: Get this data from a centralized store
     },
     averageRating() {
       let sum = this.reviews.reduce((currentSum, review) => {
@@ -75,6 +75,7 @@ export default {
     setFilter(level) {
       console.debug("Set filter level to " + level);
       // TODO: Set a global state's filter by review setting
+      this.$store.commit('CHANGE_FILTER_BY_RATING', level);
     },
   },
 };

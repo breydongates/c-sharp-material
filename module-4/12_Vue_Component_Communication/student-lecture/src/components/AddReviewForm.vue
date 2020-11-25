@@ -60,7 +60,7 @@ export default {
   methods: {
     addNewReviewRevised() {
       // TODO: Add this.newReview to a centralized object store
-
+      this.$store.commit('ADD_REVIEW', this.newReview);
       // Reset the new review so it's a new object with blank values
       this.newReview = {
         reviewer: "",
