@@ -46,11 +46,15 @@ After you complete this step, all tests under "Step Five Tests" pass.
 
 ## Step Six: Create a book detail view
 
-Create a new component called `BookDetails` that shows all of a book's details on the screen. A basic version would be something like this:
+Create a new view called `BookDetails` that shows all of a book's details on the screen.
+
+A sample version would be something like this:
 
 ![Book Detail Page](./etc/book-detail-page.png)
 
-Create a view and a dynamic route with the path `/book/` plus the `isbn` number on the end—for example, `/book/9781400079278`. Use that number to look up the book for the `BookDetails` component.
+> Hint: Don't worry too much about this user interface, you can base the details off of BookCard if you want, but it should at least contain the correct author and title of the book.
+
+Create a dynamic route with the path `/book/` plus the `isbn` number on the end—for example, `/book/9781400079278`. Use that number to look up the book when the view is created.
 
 Finally, link the `BookCard` components in the `ReadingList` component to this new route, making sure to have the book's `isbn` as part of the link when the `BookCard` is clicked.
 
