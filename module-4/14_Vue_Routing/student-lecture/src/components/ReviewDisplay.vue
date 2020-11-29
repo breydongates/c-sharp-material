@@ -1,5 +1,5 @@
 <template>
-  <div class="review" v-bind:class="{ favorited: review.favorited }" v-bind:key="review.id">
+  <div class="review" v-bind:key="review.id">
     <h4>{{ review.reviewer }}</h4>
     <div class="rating">
       <img
@@ -12,14 +12,6 @@
     </div>
     <h3>{{ review.title }}</h3>
     <p>{{ review.review }}</p>
-    <p>
-      Favorite?
-      <input
-        type="checkbox"
-        v-bind:checked="review.favorited"
-        v-on:change="onFavoritedChange(review)"
-      />
-    </p>
   </div>
 </template>
 
@@ -28,9 +20,6 @@ export default {
   name: "review-display",
   props: ["review"],
   methods: {
-    onFavoritedChange(review) {
-      this.$store.commit("FLIP_FAVORITED", review);
-    }
   }
 };
 </script>
@@ -41,10 +30,6 @@ div.main div.review {
   border-radius: 6px;
   padding: 1rem;
   margin: 10px;
-}
-
-div.main div.review.favorited {
-  background-color: lightyellow;
 }
 
 div.main div.review div.rating {

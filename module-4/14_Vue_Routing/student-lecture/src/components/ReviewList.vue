@@ -16,10 +16,13 @@ export default {
   components: {
     ReviewDisplay
   },
+  props: {
+    productId: Number,
+  },
   computed: {
     filteredReviews() {
       const activeProduct = this.$store.state.products.find(
-        p => p.id == this.$store.state.activeProduct
+        p => p.id == this.productId
       );
       const reviewsFilter = this.$store.state.filter;
       return activeProduct.reviews.filter(review => {

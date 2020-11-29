@@ -5,7 +5,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    activeProduct: 0,
     filter: 0,
     products: [
       {
@@ -19,7 +18,6 @@ export default new Vuex.Store({
             review:
               "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
             rating: 3,
-            favorited: false
           },
           {
             reviewer: 'Tim Ferriss',
@@ -27,7 +25,6 @@ export default new Vuex.Store({
             review:
               "It should have been called the four hour cigar party. That's amazing. I have a new idea for muse because of this.",
             rating: 4,
-            favorited: false
           },
           {
             reviewer: 'Ramit Sethi',
@@ -35,7 +32,6 @@ export default new Vuex.Store({
             review:
               "When I sell my courses, I'm always telling people that if a book costs less than $20, they should just buy it. If they only learn one thing from it, it was worth it. Wish I learned something from this book.",
             rating: 1,
-            favorited: false
           },
           {
             reviewer: 'Gary Vaynerchuk',
@@ -43,7 +39,6 @@ export default new Vuex.Store({
             review:
               "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
             rating: 3,
-            favorited: false
           }
         ]
       },
@@ -74,19 +69,13 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    ADD_REVIEW(state,review) {
-      const product = this.state.products.find(p => p.id == review.id);
+    ADD_REVIEW(state, review) {
+      const product = state.products.find(p => p.id == review.id);
       product.reviews.unshift(review);
     },
     UPDATE_FILTER(state, filter) {
       state.filter = filter;
     },
-    FLIP_FAVORITED(state, reviewToChange) {
-      reviewToChange.favorited = ! reviewToChange.favorited;
-    },
-    SET_ACTIVE_PRODUCT(state, productID) {
-      state.activeProduct = productID;
-    }
   },
   actions: {
   },

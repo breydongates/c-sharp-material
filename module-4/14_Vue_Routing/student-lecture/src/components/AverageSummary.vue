@@ -13,14 +13,17 @@ export default {
       this.$store.commit("UPDATE_FILTER", 0);
     }
   },
+  props: {
+    productId: Number,
+  },
   computed: {
     averageRating() {
-      const reviews = this.$store.state.products.find(
-        p => p.id == this.$store.state.activeProduct
-      ).reviews;
-      let sum = reviews.reduce((currentSum, review) => {
+      const reviews = this.$store.state.products.find(p => p.id == this.productId).reviews;
+
+      const sum = reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
       }, 0);
+
       if (sum === 0) {
         return 0;
       } else {
