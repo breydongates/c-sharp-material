@@ -45,12 +45,12 @@ export default {
   },
   methods: {
     addNewReview() {
-      const productID = this.$route.params.id;
+      const productID = 0; // TODO: Get the id from the route
+      
       this.newReview.id = productID;
       this.$store.commit("ADD_REVIEW", this.newReview);
 
       // TODO: send the visitor back to the product page to see the new review
-      this.$router.push({name: 'product-details', params: {id: productID}});
     },
     resetForm() {
       this.newReview = {};

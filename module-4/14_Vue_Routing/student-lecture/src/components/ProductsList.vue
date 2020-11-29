@@ -11,9 +11,8 @@
       <tr v-for="product in $store.state.products" v-bind:key="product.id">
         <td>{{ product.id }}</td>
         <td>
-          <router-link v-bind:to="{name:'product-details', params: {id: product.id}}">
+          <!-- TODO: This should navigate to the product details page -->
           {{ product.name }}
-          </router-link>
         </td>
         <td>{{ product.reviews.length }}</td>
       </tr>

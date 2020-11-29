@@ -34,15 +34,15 @@ export default {
 </script>
 
 <style>
-div.main {
+div.reviews {
   margin: 1rem 0;
 }
-div.main div.well-display {
+div.well-display {
   display: flex;
   justify-content: space-around;
 }
 
-div.main div.well-display div.well {
+div.well-display div.well {
   display: inline-block;
   width: 15%;
   border: 1px black solid;
@@ -51,13 +51,13 @@ div.main div.well-display div.well {
   margin: 0.25rem;
 }
 
-div.main div.well-display div.well span.amount {
+div.well-display div.well span.amount {
   color: darkslategray;
   display: block;
   font-size: 2.5rem;
 }
 
-div.main div.well-display div.well {
+div.well-display div.well {
   cursor: pointer;
 }
 </style>
