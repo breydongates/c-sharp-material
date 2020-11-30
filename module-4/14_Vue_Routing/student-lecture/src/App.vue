@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <nav>
-      <router-link :to="{name: 'products'}">Products</router-link>
-      <router-link :to="{name: 'about'}">About Us</router-link>
+      <a href="#TODO">Products</a>
+      <a href="#TODO">About Us</a>
     </nav>
-    <router-view />
+    <!-- TODO: Show the currently active route's component here -->
   </div>
 </template>
 
