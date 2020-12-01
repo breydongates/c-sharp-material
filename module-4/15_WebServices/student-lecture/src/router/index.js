@@ -69,10 +69,6 @@ const routes = [
     name: 'NotFound',
     component: NotFound
   },
-
-  // Talk about case sensitivity on Name / Components
-
-  // TODO: Add a route for question details and question edit
 ];
 
 const router = new VueRouter({
