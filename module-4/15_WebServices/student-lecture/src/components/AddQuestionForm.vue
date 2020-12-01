@@ -37,15 +37,6 @@ export default {
         }
     },
     methods: {
-        /**
-         * Calculates and returns the next available question id. This should be 1 greater than
-         * the maximum current question id.
-         * @returns {number} the next available question id
-         */
-        calculateNextAvailableId() {
-            const questions = this.$store.state.questions;
-            return questions.reduce((prev, question) => Math.max(prev, question.id + 1), 1);
-        },
         clearForm() {
             this.newQuestion.question = '';
             this.newQuestion.answer = '';
@@ -62,7 +53,6 @@ export default {
                 difficulty: this.newQuestion.difficulty,
                 isAnswerVisible: false,
                 isCorrect: null,                
-                id: this.calculateNextAvailableId()
             };
 
             // TODO: Create the question on the server

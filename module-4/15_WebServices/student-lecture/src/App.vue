@@ -35,6 +35,8 @@ export default {
     console.warn('This should make a GET call to ' + myServerUrl + '/questions');
 
     // TODO: commit a Vuex mutation named QUESTIONS_LOADED when question data is ready
+
+    console.log('App created method has finished');
   }
 };
 </script>
