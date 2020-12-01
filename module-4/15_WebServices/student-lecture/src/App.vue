@@ -32,7 +32,7 @@ export default {
     // TODO: Create our Axios instance used to communicate with the server and set the baseURL
 
     // TODO: Fetch data from the server via a get call to myServerUrl /questions
-    console.warn('This should make a GET call to ' + myServerUrl + '/questions')
+    console.warn('This should make a GET call to ' + myServerUrl + '/questions');
 
     // TODO: commit a Vuex mutation named QUESTIONS_LOADED when question data is ready
   }
