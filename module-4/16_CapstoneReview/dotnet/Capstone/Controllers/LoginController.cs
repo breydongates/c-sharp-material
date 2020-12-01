@@ -21,6 +21,9 @@ namespace Capstone.Controllers
             userDAO = _userDAO;
         }
 
+        /// <summary>
+        /// A test endpoint to ensure that the server is running.
+        /// </summary>
         [AllowAnonymous]
         [HttpGet("ready")]
         public string Ready()
@@ -28,6 +31,9 @@ namespace Capstone.Controllers
             return "Server Ready";
         }
 
+        /// <summary>
+        /// A test endpoint requiring authorization to ensure that authorization is working.
+        /// </summary>
         [Authorize]
         [HttpGet("confirm")]
         public string Confirm()
@@ -35,6 +41,9 @@ namespace Capstone.Controllers
             return "Token confirmed";
         }
 
+        /// <summary>
+        /// A test endpoint requiring authorization and the role of 'admin' to ensure that authorization is working.
+        /// </summary>
         [Authorize(Roles = "admin")]
         [HttpGet("confirmadmin")]
         public string ConfirmAdmin()
@@ -42,8 +51,10 @@ namespace Capstone.Controllers
             return "Token confirmed for admin";
         }
 
-        //if not tagged and class is not tagged
-        //then that's the same as [Allow Anonymous]
+        /// <summary>
+        /// Authenticates the user and returns a result including their authenticated token
+        /// </summary>
+        /// <param name="userParam">The login request</param>
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
@@ -78,6 +89,10 @@ namespace Capstone.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="userParam">The new user to create</param>
         [HttpPost("register")]
         public IActionResult Register(RegisterUser userParam)
         {
