@@ -16,7 +16,6 @@
 <script>
 export default {
     name: 'book-details',
-    
         data(){
         return {
             book: undefined,
