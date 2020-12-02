@@ -21,7 +21,7 @@
 
 <script>
 import QuestionCard from '../components/QuestionCard.vue';
-
+import questionService from '@/services/QuestionService.js'
 export default {
     components: {
         QuestionCard
@@ -36,9 +36,15 @@ export default {
             const confirmed = confirm('Are you sure you want to delete this question? This cannot be undone');
 
             if (confirmed) {
-                // TODO: Call out to our web service and have it make the delete
-                this.$store.commit('QUESTION_DELETED', this.question);
-                this.$router.push({name: 'Questions'});
+                questionService
+                    .deleteQuestion(this.question.id)
+                    .then(response => {
+                        if(response.status === 204) {
+                        // TODO: Call out to our web service and have it make the delete
+                        this.$store.commit('QUESTION_DELETED', this.question);
+                        this.$router.push({name: 'Questions'});
+                        }
+                    });
             }
         }
     },

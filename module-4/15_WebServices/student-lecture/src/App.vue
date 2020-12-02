@@ -14,6 +14,7 @@
 // Import allows us to import exported resources from .js and .vue files
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
+import questionService from '@/services/QuestionService.js';
 
 export default {
   name: "App",
@@ -27,12 +28,26 @@ export default {
 
     // This is a path to the application we'll be communicating with. It can be any server
     // that can handle REST requests.
-    const myServerUrl = 'https://sallythesquirrelservice.azurewebsites.net';
+   // const myServerUrl = 'https://sallythesquirrelservice.azurewebsites.net';
 
     // TODO: Create our Axios instance used to communicate with the server and set the baseURL
-
+    //const http = axios.create({baseURL: myServerUrl});
     // TODO: Fetch data from the server via a get call to myServerUrl /questions
-    console.warn('This should make a GET call to ' + myServerUrl + '/questions');
+   // console.warn('This should make a GET call to ' + myServerUrl + '/questions');
+    questionService
+        .getAllQuestions('/questions')
+        .then(response => {
+          console.log('GET completed', response);
+
+          if(response.status === 200){
+            // commit a Vuex mutation named QUESTIONS_LOADED when question data is ready
+            this.$store.commit('QUESTIONS_LOADED', response.data);
+          }
+        })
+        .catch(err => {
+          console.error('An error occured grabbing question', err.message);
+        })
+        .finally(() => console.debug('finally'));
 
     // TODO: commit a Vuex mutation named QUESTIONS_LOADED when question data is ready
 
