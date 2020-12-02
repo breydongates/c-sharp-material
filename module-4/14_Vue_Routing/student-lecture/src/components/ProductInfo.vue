@@ -3,8 +3,10 @@
     <h1>{{ product.name }}</h1>
     <p class="description">{{ product.description }}</p>
     <nav>
-        <a href="#TODO">Back to Products</a>
-        <a href="#TODO">Add Review</a>
+       <!-- <a href="#TODO">Back to Products</a>
+        <a href="#TODO">Add Review</a> -->
+        <router-link v-bind:to="{name: 'home'}"> Back to Products </router-link>
+        <router-link v-bind:to="{name: 'add-review', params: {id: product.id}}">Add Review</router-link>
     </nav>
     <div class="well-display">
       <average-summary v-bind:productId="productId" />

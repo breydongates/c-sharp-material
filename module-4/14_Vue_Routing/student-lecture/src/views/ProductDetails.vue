@@ -17,8 +17,22 @@ export default {
   },
   data() {
       return {
-          productId: 2,
+          productId: 0,
       }
   },
+  created(){
+    console.debug('My current route is ', this.$route);
+    this.productId = Number.parseInt(this.$route.params.productId);
+
+    const id = this.$route.params.productId;
+    const product = this.$store.state.products.find(p => p.id == id);
+    console.debug('My product is ', product);
+  },
+  computed:{
+    prodId(){
+      return this.$route.params.productId;
+    }
+  }
+
 };
 </script>

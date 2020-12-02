@@ -12,7 +12,9 @@
         <td>{{ product.id }}</td>
         <td>
           <!-- TODO: This should navigate to the product details page -->
+          <router-link v-bind:to="{name: 'product-details', params:{productId: product.id}}">
           {{ product.name }}
+          </router-link>
         </td>
         <td>{{ product.reviews.length }}</td>
       </tr>
