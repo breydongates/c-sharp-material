@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h1>Add Review</h1>
-    <add-review />
+    <h1>Create Document</h1>
+    <add-document />
   </div>
 </template>
 
 <script>
-import AddReview from "@/components/AddReview";
+import AddDocument from "../components/AddDocument";
 
 export default {
   components: {
-    AddReview
+    AddDocument
   }
 };
 </script>
