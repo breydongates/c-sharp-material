@@ -31,8 +31,15 @@ export default {
     };
   },
   methods: {
-    saveMessage() {
-
+    saveMessage(id) {
+      messageService.createMessage(this.message)
+      .then(response => {
+        if(response.status === 201){
+          this.$store.commit('CREATE_MESSAGE', response.data);
+          if(this.$router.currentRoute.name !== 'Messages')
+          this.$router.push({name: 'Messages', params: {id: this.message.topicId}});
+        }
+      })
     }
   }
 };
